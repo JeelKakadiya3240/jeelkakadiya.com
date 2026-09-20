@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>How Your Business Can Actually Use AI (Without the Hype) — Jeel Kakadiya</title>
+<meta name="description" content="A practical, no-hype guide to how real businesses use AI today — automating repetitive work, answering questions, moving data, and where to start. By Jeel Kakadiya, freelance developer in Phoenix, AZ.">
+<link rel="canonical" href="https://www.jeelkakadiya.com/blog/how-your-business-can-use-ai">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5BG9Y5WFEK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5BG9Y5WFEK');
+</script>
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Jeel Kakadiya">
+<meta property="og:title" content="How Your Business Can Actually Use AI (Without the Hype)">
+<meta property="og:description" content="A practical, no-hype guide to how real businesses use AI today — and where to start.">
+<meta property="og:url" content="https://www.jeelkakadiya.com/blog/how-your-business-can-use-ai">
+<meta property="og:image" content="https://www.jeelkakadiya.com/assets/og-ai-workflows-v1.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="How Your Business Can Actually Use AI (Without the Hype)">
+<meta name="twitter:description" content="A practical, no-hype guide to how real businesses use AI today — and where to start.">
+<meta name="twitter:image" content="https://www.jeelkakadiya.com/assets/og-ai-workflows-v1.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "How Your Business Can Actually Use AI (Without the Hype)",
+  "description": "A practical, no-hype guide to how real businesses use AI today — automating repetitive work, answering questions, moving data, and where to start.",
+  "image": "https://www.jeelkakadiya.com/assets/og-ai-workflows-v1.png",
+  "datePublished": "2026-09-20",
+  "dateModified": "2026-09-20",
+  "author": { "@type": "Person", "name": "Jeel Kakadiya", "url": "https://www.jeelkakadiya.com/" },
+  "publisher": { "@type": "Person", "name": "Jeel Kakadiya" },
+  "mainEntityOfPage": "https://www.jeelkakadiya.com/blog/how-your-business-can-use-ai"
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; font-family: Poppins, system-ui, sans-serif; background: #ffffff; color: #101720; -webkit-font-smoothing: antialiased; }
+  a { color: #0e7c6f; text-decoration: none; }
+  img { max-width: 100%; }
+  h1, h2, h3 { font-family: 'Poppins', system-ui, sans-serif; }
+  .nav-link { color: #3f4855; transition: color .2s ease; }
+  .nav-link:hover { color: #0e7c6f; }
+
+  .prose { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+  .prose p { font-size: 18px; line-height: 1.78; color: #374151; margin: 0 0 22px; }
+  .prose h2 { font-size: clamp(23px,3vw,29px); font-weight: 600; letter-spacing: -0.02em; color: #101720; margin: 46px 0 14px; }
+  .prose h3 { font-size: 20px; font-weight: 600; color: #101720; margin: 30px 0 8px; }
+  .prose ul { margin: 0 0 22px; padding: 0; list-style: none; }
+  .prose li { font-size: 18px; line-height: 1.7; color: #374151; margin: 0 0 12px; display: grid; grid-template-columns: 22px 1fr; gap: 8px; }
+  .prose li::before { content: ""; margin-top: 12px; width: 7px; height: 7px; border-radius: 50%; background: #0e7c6f; }
+  .prose strong { color: #101720; font-weight: 600; }
+  .prose blockquote { margin: 28px 0; padding: 4px 0 4px 22px; border-left: 3px solid #0e7c6f; color: #1a2230; font-size: 20px; font-weight: 500; line-height: 1.55; }
+
+  .btn-primary { background:#0f1720; color:#ffffff; transition: background .2s ease, transform .2s ease; }
+  .btn-primary:hover { background:#0e7c6f; transform: translateX(2px); }
+
+  @media (max-width: 700px) { .nav-links-desktop { display:none; } }
+</style>
+</head>
+<body>
+<div style="width:100%; overflow-x:hidden">
+
+<!-- NAV -->
+<nav style="position:sticky; top:0; z-index:50; background:rgba(255,255,255,0.92); backdrop-filter:blur(10px); border-bottom:1px solid #ececec">
+  <div style="max-width:1000px; margin:0 auto; padding:0 24px; height:62px; display:flex; align-items:center; justify-content:space-between">
+    <a href="/" style="font-size:22px; font-weight:700; letter-spacing:-0.02em; color:#101720; display:flex; align-items:baseline; gap:6px">Jeel K<span style="width:7px; height:7px; border-radius:50%; background:#0e7c6f; display:inline-block"></span></a>
+    <div class="nav-links-desktop" style="display:flex; align-items:center; gap:34px; font-size:15px">
+      <a href="/#projects" class="nav-link">Projects</a>
+      <a href="/#services" class="nav-link">Services</a>
+      <a href="/blog" class="nav-link">Blog</a>
+      <a href="/#contact" class="nav-link">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ARTICLE -->
+<article style="padding:64px 0 40px">
+  <div class="prose">
+    <a href="/blog" style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:#0e7c6f">&larr; Blog</a>
+    <h1 style="font-size:clamp(32px,5vw,48px); line-height:1.1; font-weight:700; letter-spacing:-0.03em; margin:18px 0 0; color:#101720">How your business can actually use AI (without the hype)</h1>
+    <div style="display:flex; flex-wrap:wrap; gap:8px 16px; align-items:center; margin-top:18px; font-size:14px; color:#8d949e; font-family:'IBM Plex Mono',monospace">
+      <span>Sep 20, 2026</span><span>·</span><span>6 min read</span><span>·</span><span>Jeel Kakadiya</span>
+    </div>
+  </div>
+
+  <div class="prose" style="margin-top:40px">
+    <p>Everyone is talking about AI, but most business owners I talk to are stuck on the same question: <em>okay, but what would I actually use it for?</em> The honest answer is less exciting than the headlines, and a lot more useful.</p>
+
+    <p>The best AI projects don't start with a shiny idea. They start with a boring, repetitive task that quietly eats your team's time every single day. If you get that part right, AI stops being a buzzword and starts being a tool that gives people their hours back.</p>
+
+    <blockquote>The best AI projects start with a repetitive task, not a shiny idea.</blockquote>
+
+    <h2>Start with the repetitive stuff</h2>
+    <p>If someone on your team does the same thing over and over, that's a candidate for AI. You're looking for work that's frequent, follows a pattern, and doesn't strictly need a human's judgment for every step. A few signals to watch for:</p>
+    <ul>
+      <li><strong>Summarizing the same kind of document, every day</strong> — contracts, resumes, reports, tickets.</li>
+      <li><strong>Answering the same customer questions</strong> over and over, in support or internally.</li>
+      <li><strong>Moving information between systems by hand</strong> — copy-pasting from one tool into another.</li>
+      <li><strong>Building the same report every week</strong> from the same handful of sources.</li>
+    </ul>
+    <p>If any of those made you nod, you already have an AI opportunity. You don't need a strategy deck — you need one of these tasks handled well.</p>
+
+    <h2>Practical ways businesses use AI today</h2>
+
+    <h3>1. Reading and summarizing documents</h3>
+    <p>AI is genuinely good at reading long, messy text and pulling out what matters — key terms in a contract, the skills in a resume, the action items in a meeting. Instead of a person skimming 40 documents a day, they review a clean summary and spend their time on the decisions.</p>
+
+    <h3>2. Answering repetitive questions</h3>
+    <p>Most support questions are variations of the same 20 questions. By grounding an AI assistant in your own help docs and policies (a technique called <strong>retrieval-augmented generation</strong>, or RAG), it can answer accurately using <em>your</em> information — not a generic guess — and hand off to a human when it's unsure.</p>
+
+    <h3>3. Moving and cleaning data between systems</h3>
+    <p>So much time is lost shuffling data from a form to a spreadsheet to a CRM. AI can read unstructured input, extract the right fields, tidy them up, and drop them into the right place — turning an hour of copy-paste into a background job.</p>
+
+    <h3>4. Drafting recurring content and reports</h3>
+    <p>Weekly summaries, first-draft emails, product descriptions, release notes. AI won't replace your voice, but it will get you 80% of the way there in seconds, so your team is editing instead of starting from a blank page.</p>
+
+    <h3>5. Searching your own knowledge</h3>
+    <p>As a company grows, so does the pile of documents nobody can find. AI search over your own files lets anyone ask a plain-English question and get an answer with the source attached — like a search engine that actually understands what you meant.</p>
+
+    <h3>6. Letting AI take action (carefully)</h3>
+    <p>The newest step is connecting AI to your actual tools so it can <em>do</em> things — look up an order, update a record, kick off a workflow — through safe, permissioned connections (the emerging standard here is <strong>MCP</strong>). This is powerful, and it's exactly where guardrails matter most.</p>
+
+    <h2>How to actually start</h2>
+    <p>The mistake I see most is trying to "adopt AI" all at once. Don't. Start absurdly small:</p>
+    <ul>
+      <li><strong>Pick one task</strong> — the single most repetitive thing your team does.</li>
+      <li><strong>Measure it</strong> — how much time does it take today? That's your baseline.</li>
+      <li><strong>Automate just that</strong>, and keep a human in the loop to check the output.</li>
+      <li><strong>Prove it, then expand</strong> — once it's saving real time, do the next task.</li>
+    </ul>
+    <p>One workflow automated well beats ten half-finished experiments. Momentum comes from a small, obvious win.</p>
+
+    <h2>What to watch for</h2>
+    <ul>
+      <li><strong>Accuracy</strong> — ground the AI in your own data and verify important outputs. Never let it guess on things that matter.</li>
+      <li><strong>Privacy</strong> — know where your data goes and which model sees it. This is a real decision, not an afterthought.</li>
+      <li><strong>Guardrails</strong> — when AI can take actions, give it clear limits and a human check on anything risky.</li>
+    </ul>
+
+    <h2>The takeaway</h2>
+    <p>You don't need an "AI strategy." You need one annoying task automated well, then another. That's how AI actually pays off — quietly, one workflow at a time.</p>
+
+    <p>If you've got a task that feels like it's begging to be automated, that's the kind of thing I build for businesses. Tell me about it and I'll map out a practical first step.</p>
+
+    <div style="margin:36px 0 8px">
+      <a href="/#contact" class="btn-primary" style="display:inline-flex; align-items:center; gap:10px; font-size:16px; font-weight:600; padding:15px 28px; border-radius:999px">Let's talk about your workflow <span>&#8594;</span></a>
+    </div>
+  </div>
+</article>
+
+<footer style="background:#ffffff; border-top:1px solid #e5e8ec; padding:28px 24px; margin-top:40px">
+  <div style="max-width:1000px; margin:0 auto; display:flex; flex-wrap:wrap; gap:10px; align-items:center; justify-content:space-between; font-size:14px; color:#8d949e">
+    <span>&copy; 2026 Jeel Kakadiya. All rights reserved.</span>
+    <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.1em; text-transform:uppercase">Freelance developer · Phoenix, AZ</span>
+  </div>
+</footer>
+
+</div>
+</body>
+</html>
