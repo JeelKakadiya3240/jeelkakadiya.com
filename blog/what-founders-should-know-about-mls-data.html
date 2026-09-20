@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>What proptech founders should know about MLS data · Jeel Kakadiya</title>
+<meta name="description" content="MLS and RESO data is powerful but messy. What the feeds actually are, why they are hard, and what it takes to make listing data your app can trust.">
+<link rel="canonical" href="https://www.jeelkakadiya.com/blog/what-founders-should-know-about-mls-data">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5BG9Y5WFEK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5BG9Y5WFEK');
+</script>
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Jeel Kakadiya">
+<meta property="og:title" content="What proptech founders should know about MLS data">
+<meta property="og:description" content="MLS and RESO data is powerful but messy. What the feeds actually are, why they are hard, and what it takes to make listing data your app can trust.">
+<meta property="og:url" content="https://www.jeelkakadiya.com/blog/what-founders-should-know-about-mls-data">
+<meta property="og:image" content="https://www.jeelkakadiya.com/assets/og-mls-data-handling-v1.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="What proptech founders should know about MLS data">
+<meta name="twitter:description" content="MLS and RESO data is powerful but messy. What the feeds actually are, why they are hard, and what it takes to make listing data your app can trust.">
+<meta name="twitter:image" content="https://www.jeelkakadiya.com/assets/og-mls-data-handling-v1.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "What proptech founders should know about MLS data",
+  "description": "MLS and RESO data is powerful but messy. What the feeds actually are, why they are hard, and what it takes to make listing data your app can trust.",
+  "image": "https://www.jeelkakadiya.com/assets/og-mls-data-handling-v1.png",
+  "datePublished": "2026-09-20",
+  "dateModified": "2026-09-20",
+  "author": { "@type": "Person", "name": "Jeel Kakadiya", "url": "https://www.jeelkakadiya.com/" },
+  "publisher": { "@type": "Person", "name": "Jeel Kakadiya" },
+  "mainEntityOfPage": "https://www.jeelkakadiya.com/blog/what-founders-should-know-about-mls-data"
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; font-family: Poppins, system-ui, sans-serif; background: #ffffff; color: #101720; -webkit-font-smoothing: antialiased; }
+  a { color: #0e7c6f; text-decoration: none; }
+  img { max-width: 100%; }
+  h1, h2, h3 { font-family: 'Poppins', system-ui, sans-serif; }
+  .nav-link { color: #3f4855; transition: color .2s ease; }
+  .nav-link:hover { color: #0e7c6f; }
+  .prose { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+  .prose p { font-size: 18px; line-height: 1.78; color: #374151; margin: 0 0 22px; }
+  .prose h2 { font-size: clamp(23px,3vw,29px); font-weight: 600; letter-spacing: -0.02em; color: #101720; margin: 46px 0 14px; }
+  .prose h3 { font-size: 20px; font-weight: 600; color: #101720; margin: 30px 0 8px; }
+  .prose ul { margin: 0 0 22px; padding: 0; list-style: none; }
+  .prose li { font-size: 18px; line-height: 1.7; color: #374151; margin: 0 0 12px; position: relative; padding-left: 22px; }
+  .prose li::before { content: ""; position: absolute; left: 2px; top: 11px; width: 7px; height: 7px; border-radius: 50%; background: #0e7c6f; }
+  .prose strong { color: #101720; font-weight: 600; }
+  .prose blockquote { margin: 28px 0; padding: 4px 0 4px 22px; border-left: 3px solid #0e7c6f; color: #1a2230; font-size: 20px; font-weight: 500; line-height: 1.55; }
+  .btn-primary { background:#0f1720; color:#ffffff; transition: background .2s ease, transform .2s ease; }
+  .btn-primary:hover { background:#0e7c6f; transform: translateX(2px); }
+  @media (max-width: 700px) { .nav-links-desktop { display:none; } }
+</style>
+</head>
+<body>
+<div style="width:100%; overflow-x:hidden">
+
+<nav style="position:sticky; top:0; z-index:50; background:rgba(255,255,255,0.92); backdrop-filter:blur(10px); border-bottom:1px solid #ececec">
+  <div style="max-width:1000px; margin:0 auto; padding:0 24px; height:62px; display:flex; align-items:center; justify-content:space-between">
+    <a href="/" style="font-size:22px; font-weight:700; letter-spacing:-0.02em; color:#101720; display:flex; align-items:baseline; gap:6px">Jeel K<span style="width:7px; height:7px; border-radius:50%; background:#0e7c6f; display:inline-block"></span></a>
+    <div class="nav-links-desktop" style="display:flex; align-items:center; gap:34px; font-size:15px">
+      <a href="/#projects" class="nav-link">Projects</a>
+      <a href="/#services" class="nav-link">Services</a>
+      <a href="/blog" class="nav-link">Blog</a>
+      <a href="/#contact" class="nav-link">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<article style="padding:64px 0 40px">
+  <div class="prose">
+    <a href="/blog" style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:#0e7c6f">&larr; Blog</a>
+    <h1 style="font-size:clamp(32px,5vw,48px); line-height:1.1; font-weight:700; letter-spacing:-0.03em; margin:18px 0 0; color:#101720">What proptech founders should know about MLS data</h1>
+    <div style="display:flex; flex-wrap:wrap; gap:8px 16px; align-items:center; margin-top:18px; font-size:14px; color:#8d949e; font-family:'IBM Plex Mono',monospace">
+      <span>Sep 20, 2026</span><span>·</span><span>7 min read</span><span>·</span><span>Jeel Kakadiya</span>
+    </div>
+  </div>
+
+  <div class="prose" style="margin-top:40px">
+    <p>If you are building anything in real estate, listing data is the fuel. And the moment you go to actually use it, you discover it is far messier than you expected. Every market is a little different, the volume is large, and the rules are strict. Here is what founders should understand before they build on it.</p>
+    <h2>What MLS data actually is</h2>
+    <p>An MLS (Multiple Listing Service) is the shared database that real estate professionals in a region use to list and find properties. You get access through a data feed. Older feeds use a standard called RETS; newer ones use the RESO Web API, a more modern, standardized way to pull listings, agents, and offices. Most markets are moving toward RESO, but you will still meet both.</p>
+    <h2>Why it is harder than it looks</h2>
+    <ul>
+      <li><strong>Every MLS is different.</strong> There are hundreds of them, and they name and structure their data in their own way. What one calls a field, another calls something else.</li>
+      <li><strong>The volume is large and always changing.</strong> Listings go active, pending, and sold constantly, so the data is never static.</li>
+      <li><strong>The rules are strict.</strong> Each MLS has display and usage rules you must follow, and they are not optional.</li>
+      <li><strong>The quality varies.</strong> Real humans enter this data, so expect typos, gaps, and surprises.</li>
+    </ul>
+    <blockquote>MLS feeds are a firehose of messy, inconsistent data. The value is in making it clean and consistent.</blockquote>
+    <h2>Normalization: the real work</h2>
+    <p>The single most important step is normalization, mapping all those different feeds into one clean, consistent schema. When it is done well, the rest of your app only ever has to understand one shape of data, no matter how many markets you add. When it is skipped, every new MLS becomes a fresh headache that spreads through your whole codebase.</p>
+    <h2>Keeping it fresh</h2>
+    <p>You cannot just pull everything, every time, it is too much data and the feeds have limits. The reliable approach is incremental sync: pull only what changed since last time, on a schedule that respects the feed's rules and keeps your costs sane. Done right, your data stays current without hammering the source.</p>
+    <h2>Do not skip compliance</h2>
+    <p>Display rules, attribution, and what you are allowed to do with the data are part of the deal, not fine print. Getting this wrong can cost you your access. It needs to be built into how you store and show listings from day one.</p>
+    <h2>Build vs. buy</h2>
+    <p>There are aggregators that sell cleaned-up data, and for some products that is the fastest path. But if listing data is core to what makes your product special, or you need markets the aggregators do not cover well, owning the pipeline gives you control the resellers cannot. This is exactly the kind of system I build, from feed to clean, searchable data.</p>
+
+    <div style="margin:36px 0 8px">
+      <a href="/#contact" class="btn-primary" style="display:inline-flex; align-items:center; gap:10px; font-size:16px; font-weight:600; padding:15px 28px; border-radius:999px">Talk MLS data <span>&#8594;</span></a>
+    </div>
+  </div>
+</article>
+
+<footer style="background:#ffffff; border-top:1px solid #e5e8ec; padding:28px 24px; margin-top:40px">
+  <div style="max-width:1000px; margin:0 auto; display:flex; flex-wrap:wrap; gap:10px; align-items:center; justify-content:space-between; font-size:14px; color:#8d949e">
+    <span>&copy; 2026 Jeel Kakadiya. All rights reserved.</span>
+    <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.1em; text-transform:uppercase">Freelance developer · Phoenix, AZ</span>
+  </div>
+</footer>
+</div>
+</body>
+</html>
