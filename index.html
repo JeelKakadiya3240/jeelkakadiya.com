@@ -1182,6 +1182,10 @@
                         form.reset();
                         status.style.color = '#0e7c6f';
                         status.textContent = 'Thanks! Your message has been sent.';
+                        // GA4 conversion: fires only on a successful send
+                        if (typeof gtag === 'function') {
+                            gtag('event', 'generate_lead', { method: 'contact_form' });
+                        }
                     } else {
                         status.style.color = '#c0392b';
                         status.textContent = (j && j.error) || 'Could not send. Please email me directly.';
