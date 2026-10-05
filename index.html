@@ -416,6 +416,10 @@
         .rd .cf-input::placeholder { color:#9aa2ac; }
         @media (max-width:560px) { .rd .cf-row { grid-template-columns:1fr !important; } }
 
+        /* collapsible experience toggle + sticky mobile CTA: hidden on desktop */
+        .exp-toggle { display:none; }
+        .mobile-cta { display:none; }
+
         @media (max-width: 960px) {
             .rd .grid-head { grid-template-columns:1fr !important; gap:24px !important; align-items:start !important; }
             .rd .about-cols { grid-template-columns:1fr !important; gap:32px !important; }
@@ -429,11 +433,30 @@
             .rd .grid-fl-head .fl-price { text-align:left !important; }
             .rd .grid-fl-cards { grid-template-columns:1fr 1fr !important; }
             .rd .grid-fl-banner { grid-template-columns:1fr !important; gap:24px !important; }
-            .rd.sec-pad { padding-top:72px !important; padding-bottom:72px !important; }
+            .rd.sec-pad { padding-top:52px !important; padding-bottom:52px !important; }
             .rd .footer-inner { flex-direction:column !important; gap:10px !important; text-align:center; }
+
+            /* tighter rows */
+            .rd .exp-row { padding:24px 0 !important; }
+            .rd .proj-row { padding:26px 0 !important; }
+            .rd .grid-skill-row { padding:18px 0 !important; }
+
+            /* shorter hero */
+            #home { min-height:auto !important; padding-top:84px !important; padding-bottom:36px !important; }
+            .hero-photo-wrap { width:min(260px, 70%) !important; }
+            #hero-stats { margin-top:32px !important; }
+
+            /* collapsible experience */
+            .exp-row.is-collapsed ul { display:none !important; }
+            .exp-toggle { display:inline-flex; align-items:center; gap:6px; margin-top:16px; background:none; border:none; padding:0; cursor:pointer; font-family:'IBM Plex Mono',monospace; font-size:13px; font-weight:500; letter-spacing:0.02em; color:#0e7c6f; }
+
+            /* sticky book-a-call */
+            .mobile-cta { display:inline-flex; align-items:center; gap:8px; position:fixed; bottom:18px; left:50%; transform:translateX(-50%) translateY(140%); background:#0e7c6f; color:#ffffff; font-family:'Poppins',system-ui,sans-serif; font-size:15px; font-weight:600; padding:13px 24px; border-radius:999px; box-shadow:0 12px 30px -8px rgba(14,124,111,0.55); z-index:60; text-decoration:none; transition:transform .3s cubic-bezier(0.34,1.56,0.64,1); }
+            .mobile-cta.show { transform:translateX(-50%) translateY(0); }
         }
         @media (max-width: 560px) {
             .rd .grid-fl-cards { grid-template-columns:1fr !important; }
+            .rd.sec-pad { padding-top:40px !important; padding-bottom:40px !important; }
         }
     </style>
 </head>
@@ -1279,6 +1302,57 @@
                     btn.disabled = false; btn.style.opacity = '1'; btn.innerHTML = label;
                 }
             });
+        })();
+    </script>
+
+    <!-- Mobile: sticky Book-a-call button -->
+    <a href="https://calendly.com/jeelkakadiya11/30min" target="_blank" rel="noopener noreferrer" class="mobile-cta">Book a call <span>&#8594;</span></a>
+
+    <script>
+        // ——— Mobile: collapse Experience roles into tap-to-expand ———
+        (function () {
+            var mq = window.matchMedia('(max-width: 960px)');
+            var rows = Array.prototype.slice.call(document.querySelectorAll('#experience .exp-row'));
+            if (!rows.length) return;
+            var built = false;
+            function labelFor(ul) {
+                var n = ul ? ul.querySelectorAll('li').length : 0;
+                return 'Show ' + n + ' point' + (n === 1 ? '' : 's');
+            }
+            function build() {
+                if (built) return; built = true;
+                rows.forEach(function (row, i) {
+                    var h3 = row.querySelector('h3');
+                    var ul = row.querySelector('ul');
+                    if (!h3 || !ul) return;
+                    var btn = document.createElement('button');
+                    btn.type = 'button';
+                    btn.className = 'exp-toggle';
+                    var collapsed = (i !== 0); // most recent role stays open
+                    if (collapsed) row.classList.add('is-collapsed');
+                    btn.textContent = collapsed ? labelFor(ul) : 'Hide details';
+                    btn.addEventListener('click', function () {
+                        var nowCollapsed = row.classList.toggle('is-collapsed');
+                        btn.textContent = nowCollapsed ? labelFor(ul) : 'Hide details';
+                    });
+                    ul.parentNode.insertBefore(btn, ul);
+                });
+            }
+            if (mq.matches) build();
+            if (mq.addEventListener) mq.addEventListener('change', function (e) { if (e.matches) build(); });
+            else if (mq.addListener) mq.addListener(function (e) { if (e.matches) build(); });
+        })();
+
+        // ——— Mobile: show sticky "Book a call" after the hero ———
+        (function () {
+            var cta = document.querySelector('.mobile-cta');
+            if (!cta) return;
+            function onScroll() {
+                if (window.scrollY > window.innerHeight * 0.8) cta.classList.add('show');
+                else cta.classList.remove('show');
+            }
+            window.addEventListener('scroll', onScroll, { passive: true });
+            onScroll();
         })();
     </script>
 </body>
