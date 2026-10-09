@@ -380,18 +380,6 @@
 
         .rd .exp-row { position: relative; }
         .rd .exp-row > * { position: relative; z-index: 1; }
-        .rd .exp-row::before {
-            content: '';
-            position: absolute;
-            top: 0; bottom: 0; left: 50%;
-            width: 100vw;
-            transform: translateX(-50%);
-            background: transparent;
-            transition: background .25s ease;
-            z-index: 0;
-            pointer-events: none;
-        }
-        .rd .exp-row:hover::before { background: rgba(255,255,255,0.7); }
 
         .rd .proj-row { transition: background .25s ease; }
         .rd .proj-row:hover { background: rgba(255,255,255,0.04); }
@@ -687,22 +675,24 @@
     </section>
 
     <!-- ===== EXPERIENCE (redesign) ===== -->
+    <style>
+      @media (max-width: 960px) {
+        #experience .xp-sticky { position: static !important; top: auto !important; }
+      }
+    </style>
     <section id="experience" class="rd sec-pad" style="background:#f6f7f9; padding:110px 24px 100px; font-family:'Poppins',system-ui,sans-serif">
-      <div style="max-width:1216px; margin:0 auto">
-        <div class="grid-head" style="display:grid; grid-template-columns:360px 1fr; gap:80px; align-items:end">
-          <div class="stagger-item">
-            <div style="display:flex; align-items:center; gap:12px; font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.18em; text-transform:uppercase; color:#8d949e">
-              <span style="color:#0e7c6f">02</span>
-              <span style="width:26px; height:1px; background:#d8dce1"></span>Experience
-            </div>
-            <h2 style="font-size:clamp(34px,5vw,46px); line-height:1.06; font-weight:600; letter-spacing:-0.035em; margin:20px 0 0; color:#101720">Where I&rsquo;ve<br>worked</h2>
+      <div class="grid-head xp-grid" style="max-width:1216px; margin:0 auto; display:grid; grid-template-columns:360px 1fr; gap:80px; align-items:start">
+        <div class="xp-sticky" style="position:sticky; top:104px; align-self:start">
+          <div class="xp-reveal" style="display:flex; align-items:center; gap:12px; font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.18em; text-transform:uppercase; color:#8d949e">
+            <span style="color:#0e7c6f">02</span>
+            <span style="width:26px; height:1px; background:#d8dce1"></span>Experience
           </div>
-          <p class="stagger-item" style="font-size:17px; line-height:1.7; color:#5c6470; margin:0 0 8px; max-width:520px">Four roles across product engineering, platform APIs, and data infrastructure, from a research university to early-stage teams.</p>
+          <h2 class="xp-headline" style="font-size:clamp(38px,5.6vw,54px); line-height:1.04; font-weight:600; letter-spacing:-0.035em; margin:20px 0 0; color:#101720">Where I&rsquo;ve<br>worked</h2>
+          <p class="xp-reveal" style="font-size:17px; line-height:1.7; color:#5c6470; margin:28px 0 0">Four roles across product engineering, platform APIs, and data infrastructure, from a research university to early-stage teams.</p>
         </div>
-
-        <div style="margin-top:64px; display:grid; gap:0">
+        <div style="display:grid; gap:0">
           <!-- RemoGPT -->
-          <div class="exp-row stagger-item grid-exp-row" style="display:grid; grid-template-columns:260px 1fr; gap:48px; padding:40px 0; border-top:1px solid #e2e5ea">
+          <div class="exp-row grid-exp-row" style="display:grid; grid-template-columns:260px 1fr; gap:48px; padding:40px 0; border-top:1px solid #e2e5ea">
             <div>
               <div style="display:inline-flex; align-items:center; gap:8px; font-family:'IBM Plex Mono',monospace; font-size:12px; color:#0b675c; background:#d9f2ea; padding:6px 12px; border-radius:999px; white-space:nowrap">Jun 2026 &ndash; Present</div>
               <div style="font-size:20px; font-weight:700; letter-spacing:-0.02em; margin-top:18px; color:#101720">The RemoGroup&trade;</div>
@@ -720,7 +710,7 @@
           </div>
 
           <!-- Cypress Bridge -->
-          <div class="exp-row stagger-item grid-exp-row" style="display:grid; grid-template-columns:260px 1fr; gap:48px; padding:40px 0; border-top:1px solid #e2e5ea">
+          <div class="exp-row grid-exp-row" style="display:grid; grid-template-columns:260px 1fr; gap:48px; padding:40px 0; border-top:1px solid #e2e5ea">
             <div>
               <div style="display:inline-flex; align-items:center; gap:8px; font-family:'IBM Plex Mono',monospace; font-size:12px; color:#5c6470; background:#eceff2; padding:6px 12px; border-radius:999px; white-space:nowrap">Jan 2026 &ndash; May 2026</div>
               <div style="font-size:20px; font-weight:700; letter-spacing:-0.02em; margin-top:18px; color:#101720">Cypress Bridge Group, LLC</div>
@@ -737,7 +727,7 @@
           </div>
 
           <!-- ASU -->
-          <div class="exp-row stagger-item grid-exp-row" style="display:grid; grid-template-columns:260px 1fr; gap:48px; padding:40px 0; border-top:1px solid #e2e5ea">
+          <div class="exp-row grid-exp-row" style="display:grid; grid-template-columns:260px 1fr; gap:48px; padding:40px 0; border-top:1px solid #e2e5ea">
             <div>
               <div style="display:inline-flex; align-items:center; gap:8px; font-family:'IBM Plex Mono',monospace; font-size:12px; color:#5c6470; background:#eceff2; padding:6px 12px; border-radius:999px; white-space:nowrap">May 2025 &ndash; May 2026</div>
               <div style="font-size:20px; font-weight:700; letter-spacing:-0.02em; margin-top:18px; color:#101720">Arizona State University</div>
@@ -755,7 +745,7 @@
           </div>
 
           <!-- VBI -->
-          <div class="exp-row stagger-item grid-exp-row" style="display:grid; grid-template-columns:260px 1fr; gap:48px; padding:40px 0; border-top:1px solid #e2e5ea; border-bottom:1px solid #e2e5ea">
+          <div class="exp-row grid-exp-row" style="display:grid; grid-template-columns:260px 1fr; gap:48px; padding:40px 0; border-top:1px solid #e2e5ea; border-bottom:1px solid #e2e5ea">
             <div>
               <div style="display:inline-flex; align-items:center; gap:8px; font-family:'IBM Plex Mono',monospace; font-size:12px; color:#5c6470; background:#eceff2; padding:6px 12px; border-radius:999px; white-space:nowrap">Jan 2024 &ndash; Aug 2024</div>
               <div style="font-size:20px; font-weight:700; letter-spacing:-0.02em; margin-top:18px; color:#101720">VBI Infotech</div>
@@ -1479,6 +1469,49 @@
             c.style.zIndex = ''; c.style.boxShadow = '';
           });
         }
+        requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    })();
+    </script>
+
+    <!-- Experience: smooth scroll-linked reveal (same UI, scroll-driven motion) -->
+    <script>
+    (function () {
+      var rows = [].slice.call(document.querySelectorAll('#experience .xp-reveal, #experience .xp-headline, #experience .exp-row'));
+      if (!rows.length) return;
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduce) { rows.forEach(function (r) { r.style.opacity = '1'; r.style.transform = 'none'; r.style.filter = 'none'; }); return; }
+
+      var prog = rows.map(function () { return 0; });
+      function ease(p) { return 1 - Math.pow(1 - p, 3); } // easeOutCubic
+
+      // start fully hidden, lifted, and blurred
+      rows.forEach(function (r) {
+        r.style.willChange = 'opacity, transform, filter';
+        r.style.opacity = '0';
+        r.style.transform = 'translateY(70px) scale(0.97)';
+        r.style.filter = 'blur(8px)';
+      });
+
+      function tick() {
+        var vh = window.innerHeight;
+        rows.forEach(function (r, i) {
+          var head = r.classList.contains('xp-headline');
+          var y0 = head ? 30 : 70;        // headline
+          var blur0 = head ? 26 : 8;      // ...much heavier blur-to-sharp
+          var sStart = head ? 1.22 : 0.97; // headline settles DOWN from 1.22x; rows grow UP from 0.97
+          var win = head ? 0.72 : 0.45;   // headline reveals over a long, watchable scroll
+          var top = r.getBoundingClientRect().top;
+          var p = (vh - top) / (vh * win);
+          p = Math.max(0, Math.min(1, p));
+          prog[i] = p; // track scroll 1:1 both ways (re-animates every time, no lag)
+          var e = ease(prog[i]);
+          var scale = sStart + (1 - sStart) * e;
+          r.style.opacity = e.toFixed(3);
+          r.style.transform = 'translateY(' + ((1 - e) * y0).toFixed(1) + 'px) scale(' + scale.toFixed(3) + ')';
+          r.style.filter = e > 0.995 ? 'none' : 'blur(' + ((1 - e) * blur0).toFixed(2) + 'px)';
+        });
         requestAnimationFrame(tick);
       }
       requestAnimationFrame(tick);
