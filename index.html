@@ -458,6 +458,32 @@
             .rd .grid-fl-cards { grid-template-columns:1fr !important; }
             .rd.sec-pad { padding-top:40px !important; padding-bottom:40px !important; }
         }
+        /* Skills card fan */
+        .skill-card {
+          position:absolute; left:50%; top:50%; width:290px; min-height:340px;
+          transform:translate(-50%,-50%);
+          border-radius:20px; padding:30px 28px; overflow:hidden; cursor:default;
+          box-shadow:0 30px 60px -28px rgba(16,23,32,0.35), 0 2px 6px rgba(16,23,32,0.06);
+          will-change:transform;
+        }
+        .skill-card .sc-bar   { width:34px; height:4px; border-radius:2px; }
+        .skill-card .sc-label { font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.16em; text-transform:uppercase; margin-top:22px; }
+        .skill-card .sc-title { font-size:24px; font-weight:600; letter-spacing:-0.02em; line-height:1.15; margin:6px 0 0; }
+        .skill-card .sc-chips { position:relative; z-index:1; display:flex; flex-wrap:wrap; gap:8px; margin-top:22px; }
+        .skill-card .sc-chips span { font-size:13px; padding:6px 11px; border-radius:8px; }
+        .skill-card .sc-num   { position:absolute; right:14px; bottom:-26px; font-size:128px; font-weight:800; letter-spacing:-0.06em; line-height:1; pointer-events:none; }
+
+        /* Tablet / mobile: static grid, no sticky, no fan */
+        @media (max-width: 960px) {
+          .skills-fan { height:auto !important; }
+          .skills-fan .skills-sticky { position:relative !important; height:auto !important; overflow:visible !important; padding:52px 24px !important; }
+          .skills-fan .skills-stage { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:20px; min-height:0 !important; margin-top:36px !important; }
+          .skills-fan .skill-card { position:relative; left:auto; top:auto; width:auto; }
+          .skills-fan .skills-hint { display:none; }
+        }
+        @media (max-width: 560px) {
+          .skills-fan .skills-sticky { padding:40px 24px !important; }
+        }
     </style>
 </head>
 <body class="smooth-scroll smooth-scroll-content">
@@ -748,58 +774,96 @@
       </div>
     </section>
 
-    <!-- ===== SKILLS (redesign) ===== -->
-    <section id="skills" class="rd sec-pad" style="background:#ffffff; padding:110px 24px 100px; font-family:'Poppins',system-ui,sans-serif">
-      <div style="max-width:1216px; margin:0 auto">
-        <div class="grid-head" style="display:grid; grid-template-columns:360px 1fr; gap:80px; align-items:end">
-          <div class="stagger-item">
-            <div style="display:flex; align-items:center; gap:12px; font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.18em; text-transform:uppercase; color:#8d949e">
-              <span style="color:#0e7c6f">03</span>
-              <span style="width:26px; height:1px; background:#d8dce1"></span>Skills
+    <!-- ===== SKILLS (card fan) ===== -->
+    <section id="skills" class="rd skills-fan" style="position:relative; height:240vh; background:#ffffff; font-family:'Poppins',system-ui,sans-serif">
+      <div class="skills-sticky" style="position:sticky; top:0; height:100vh; display:flex; flex-direction:column; padding:96px 24px 32px; overflow:hidden">
+        <div style="width:100%; max-width:1216px; margin:0 auto">
+          <div class="grid-head" style="display:grid; grid-template-columns:360px 1fr; gap:80px; align-items:end">
+            <div>
+              <div style="display:flex; align-items:center; gap:12px; font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.18em; text-transform:uppercase; color:#8d949e">
+                <span style="color:#0e7c6f">03</span>
+                <span style="width:26px; height:1px; background:#d8dce1"></span>Skills
+              </div>
+              <h2 style="font-size:clamp(34px,5vw,46px); line-height:1.06; font-weight:600; letter-spacing:-0.035em; margin:20px 0 0; color:#101720">Technical<br>expertise</h2>
             </div>
-            <h2 style="font-size:clamp(34px,5vw,46px); line-height:1.06; font-weight:600; letter-spacing:-0.035em; margin:20px 0 0; color:#101720">Technical<br>expertise</h2>
+            <p style="font-size:17px; line-height:1.7; color:#5c6470; margin:0 0 8px; max-width:520px">The toolkit I reach for, built through graduate coursework, client work, and shipping production software.</p>
           </div>
-          <p class="stagger-item" style="font-size:17px; line-height:1.7; color:#5c6470; margin:0 0 8px; max-width:520px">The toolkit I reach for, built through graduate coursework and shipping production software.</p>
         </div>
 
-        <div class="grid-skill-wrap" style="margin-top:56px; display:grid; grid-template-columns:1fr 1fr; column-gap:80px">
-          <div class="grid-skill-row stagger-item" style="display:grid; grid-template-columns:190px 1fr; gap:32px; padding:26px 0; border-top:1px solid #e5e8ec; align-items:start">
-            <div style="font-size:17px; font-weight:700; letter-spacing:-0.015em; color:#101720">Languages</div>
-            <div style="display:flex; flex-wrap:wrap; gap:8px">
-              <span class="skill-tag" style="font-size:14px; color:#404955; background:#f4f5f7; padding:7px 13px; border-radius:8px">Java</span><span class="skill-tag" style="font-size:14px; color:#404955; background:#f4f5f7; padding:7px 13px; border-radius:8px">Python</span><span class="skill-tag" style="font-size:14px; color:#404955; background:#f4f5f7; padding:7px 13px; border-radius:8px">JavaScript</span><span class="skill-tag" style="font-size:14px; color:#404955; background:#f4f5f7; padding:7px 13px; border-radius:8px">TypeScript</span><span class="skill-tag" style="font-size:14px; color:#404955; background:#f4f5f7; padding:7px 13px; border-radius:8px">C++</span><span class="skill-tag" style="font-size:14px; color:#404955; background:#f4f5f7; padding:7px 13px; border-radius:8px">SQL</span>
+        <div class="skills-stage" data-stage style="position:relative; flex:1; width:100%; max-width:1216px; margin:24px auto 0; min-height:460px">
+          <!-- 01 Languages -->
+          <div class="skill-card" data-card style="background:#10151b; border:1px solid #10151b">
+            <div class="sc-bar" style="background:#41c9b4"></div>
+            <div class="sc-label" style="color:#7d8794">Toolkit</div>
+            <h3 class="sc-title" style="color:#ffffff">Languages</h3>
+            <div class="sc-chips" data-chip-bg="rgba(255,255,255,0.08)" data-chip="#d1d5db">
+              <span>Java</span><span>Python</span><span>JavaScript</span><span>TypeScript</span><span>C++</span><span>SQL</span>
             </div>
+            <div class="sc-num" style="color:rgba(255,255,255,0.06)">01</div>
           </div>
-          <div class="grid-skill-row stagger-item" style="display:grid; grid-template-columns:190px 1fr; gap:32px; padding:26px 0; border-top:1px solid #e5e8ec; align-items:start">
-            <div style="font-size:17px; font-weight:700; letter-spacing:-0.015em; color:#101720">Web</div>
-            <div style="display:flex; flex-wrap:wrap; gap:8px">
-              <span class="skill-tag" style="font-size:14px; color:#404955; background:#f4f5f7; padding:7px 13px; border-radius:8px">React</span><span class="skill-tag" style="font-size:14px; color:#404955; background:#f4f5f7; padding:7px 13px; border-radius:8px">Next.js</span><span class="skill-tag" style="font-size:14px; color:#404955; background:#f4f5f7; padding:7px 13px; border-radius:8px">Node.js</span><span class="skill-tag" style="font-size:14px; color:#404955; background:#f4f5f7; padding:7px 13px; border-radius:8px">HTML5</span><span class="skill-tag" style="font-size:14px; color:#404955; background:#f4f5f7; padding:7px 13px; border-radius:8px">CSS3</span><span class="skill-tag" style="font-size:14px; color:#404955; background:#f4f5f7; padding:7px 13px; border-radius:8px">Tailwind CSS</span>
+          <!-- 02 Web -->
+          <div class="skill-card" data-card style="background:#ffffff; border:1px solid #e7e9ec">
+            <div class="sc-bar" style="background:#0e7c6f"></div>
+            <div class="sc-label" style="color:#8d949e">Toolkit</div>
+            <h3 class="sc-title" style="color:#101720">Web</h3>
+            <div class="sc-chips" data-chip-bg="#f4f5f7" data-chip="#404955">
+              <span>React</span><span>Next.js</span><span>Node.js</span><span>HTML5</span><span>CSS3</span><span>Tailwind CSS</span>
             </div>
+            <div class="sc-num" style="color:rgba(16,23,32,0.05)">02</div>
           </div>
-          <div class="grid-skill-row stagger-item" style="display:grid; grid-template-columns:190px 1fr; gap:32px; padding:26px 0; border-top:1px solid #e5e8ec; align-items:start">
-            <div style="font-size:17px; font-weight:700; letter-spacing:-0.015em; color:#101720">Cloud &amp; DevOps</div>
-            <div style="display:flex; flex-wrap:wrap; gap:8px">
-              <span class="skill-tag" style="font-size:14px; color:#404955; background:#f4f5f7; padding:7px 13px; border-radius:8px">AWS</span><span class="skill-tag" style="font-size:14px; color:#404955; background:#f4f5f7; padding:7px 13px; border-radius:8px">Docker</span><span class="skill-tag" style="font-size:14px; color:#404955; background:#f4f5f7; padding:7px 13px; border-radius:8px">Git</span><span class="skill-tag" style="font-size:14px; color:#404955; background:#f4f5f7; padding:7px 13px; border-radius:8px">CI/CD</span><span class="skill-tag" style="font-size:14px; color:#404955; background:#f4f5f7; padding:7px 13px; border-radius:8px">REST APIs</span><span class="skill-tag" style="font-size:14px; color:#404955; background:#f4f5f7; padding:7px 13px; border-radius:8px">Microservices</span>
+          <!-- 03 Cloud & DevOps -->
+          <div class="skill-card" data-card style="background:#0e7c6f; border:1px solid #0e7c6f">
+            <div class="sc-bar" style="background:#d9f2ea"></div>
+            <div class="sc-label" style="color:#bfe6dc">Toolkit</div>
+            <h3 class="sc-title" style="color:#ffffff">Cloud &amp; DevOps</h3>
+            <div class="sc-chips" data-chip-bg="rgba(255,255,255,0.14)" data-chip="#ffffff">
+              <span>AWS</span><span>Docker</span><span>Git</span><span>CI/CD</span><span>REST APIs</span><span>Microservices</span>
             </div>
+            <div class="sc-num" style="color:rgba(255,255,255,0.09)">03</div>
           </div>
-          <div class="grid-skill-row stagger-item" style="display:grid; grid-template-columns:190px 1fr; gap:32px; padding:26px 0; border-top:1px solid #e5e8ec; align-items:start">
-            <div style="font-size:17px; font-weight:700; letter-spacing:-0.015em; color:#101720">Databases</div>
-            <div style="display:flex; flex-wrap:wrap; gap:8px">
-              <span class="skill-tag" style="font-size:14px; color:#404955; background:#f4f5f7; padding:7px 13px; border-radius:8px">MongoDB</span><span class="skill-tag" style="font-size:14px; color:#404955; background:#f4f5f7; padding:7px 13px; border-radius:8px">PostgreSQL</span><span class="skill-tag" style="font-size:14px; color:#404955; background:#f4f5f7; padding:7px 13px; border-radius:8px">MySQL</span><span class="skill-tag" style="font-size:14px; color:#404955; background:#f4f5f7; padding:7px 13px; border-radius:8px">Redis</span>
+          <!-- 04 Business Tools (NEW) -->
+          <div class="skill-card" data-card style="background:#d9f2ea; border:1px solid #bfe6dc">
+            <div class="sc-bar" style="background:#0e7c6f"></div>
+            <div class="sc-label" style="color:#3f7f74">Toolkit</div>
+            <h3 class="sc-title" style="color:#0b4f47">Business Tools</h3>
+            <div class="sc-chips" data-chip-bg="#ffffff" data-chip="#0b675c">
+              <span>HubSpot</span><span>GoHighLevel</span><span>Instantly</span><span>Twilio</span>
             </div>
+            <div class="sc-num" style="color:rgba(11,79,71,0.08)">04</div>
           </div>
-          <div class="grid-skill-row stagger-item" style="display:grid; grid-template-columns:190px 1fr; gap:32px; padding:26px 0; border-top:1px solid #e5e8ec; align-items:start">
-            <div style="font-size:17px; font-weight:700; letter-spacing:-0.015em; color:#101720">Tools &amp; Frameworks</div>
-            <div style="display:flex; flex-wrap:wrap; gap:8px">
-              <span class="skill-tag" style="font-size:14px; color:#404955; background:#f4f5f7; padding:7px 13px; border-radius:8px">Spring Boot</span><span class="skill-tag" style="font-size:14px; color:#404955; background:#f4f5f7; padding:7px 13px; border-radius:8px">Express.js</span><span class="skill-tag" style="font-size:14px; color:#404955; background:#f4f5f7; padding:7px 13px; border-radius:8px">GraphQL</span><span class="skill-tag" style="font-size:14px; color:#404955; background:#f4f5f7; padding:7px 13px; border-radius:8px">JUnit</span><span class="skill-tag" style="font-size:14px; color:#404955; background:#f4f5f7; padding:7px 13px; border-radius:8px">Maven</span><span class="skill-tag" style="font-size:14px; color:#404955; background:#f4f5f7; padding:7px 13px; border-radius:8px">Gradle</span>
+          <!-- 05 Databases -->
+          <div class="skill-card" data-card style="background:#0f2233; border:1px solid #0f2233">
+            <div class="sc-bar" style="background:#41c9b4"></div>
+            <div class="sc-label" style="color:#7d8fa3">Toolkit</div>
+            <h3 class="sc-title" style="color:#ffffff">Databases</h3>
+            <div class="sc-chips" data-chip-bg="rgba(255,255,255,0.08)" data-chip="#cbd5e1">
+              <span>MongoDB</span><span>PostgreSQL</span><span>MySQL</span><span>Redis</span>
             </div>
+            <div class="sc-num" style="color:rgba(255,255,255,0.06)">05</div>
           </div>
-          <div class="grid-skill-row stagger-item" style="display:grid; grid-template-columns:190px 1fr; gap:32px; padding:26px 0; border-top:1px solid #e5e8ec; border-bottom:1px solid #e5e8ec; align-items:start">
-            <div style="font-size:17px; font-weight:700; letter-spacing:-0.015em; color:#101720">AI &amp; ML</div>
-            <div style="display:flex; flex-wrap:wrap; gap:8px">
-              <span class="skill-tag" style="font-size:14px; color:#404955; background:#f4f5f7; padding:7px 13px; border-radius:8px">MCP Servers</span><span class="skill-tag" style="font-size:14px; color:#404955; background:#f4f5f7; padding:7px 13px; border-radius:8px">LLM Integration</span><span class="skill-tag" style="font-size:14px; color:#404955; background:#f4f5f7; padding:7px 13px; border-radius:8px">RAG</span><span class="skill-tag" style="font-size:14px; color:#404955; background:#f4f5f7; padding:7px 13px; border-radius:8px">Prompt Engineering</span><span class="skill-tag" style="font-size:14px; color:#404955; background:#f4f5f7; padding:7px 13px; border-radius:8px">NLP</span>
+          <!-- 06 Tools & Frameworks -->
+          <div class="skill-card" data-card style="background:#ffffff; border:1px solid #e7e9ec">
+            <div class="sc-bar" style="background:#0e7c6f"></div>
+            <div class="sc-label" style="color:#8d949e">Toolkit</div>
+            <h3 class="sc-title" style="color:#101720">Tools &amp; Frameworks</h3>
+            <div class="sc-chips" data-chip-bg="#f4f5f7" data-chip="#404955">
+              <span>Spring Boot</span><span>Express.js</span><span>GraphQL</span><span>JUnit</span><span>Maven</span><span>Gradle</span>
             </div>
+            <div class="sc-num" style="color:rgba(16,23,32,0.05)">06</div>
+          </div>
+          <!-- 07 AI & ML -->
+          <div class="skill-card" data-card style="background:#0b4f47; border:1px solid #0b4f47">
+            <div class="sc-bar" style="background:#5eead4"></div>
+            <div class="sc-label" style="color:#8fc9bf">Toolkit</div>
+            <h3 class="sc-title" style="color:#ffffff">AI &amp; ML</h3>
+            <div class="sc-chips" data-chip-bg="rgba(255,255,255,0.12)" data-chip="#e6fffa">
+              <span>MCP Servers</span><span>LLM Integration</span><span>RAG</span><span>Prompt Engineering</span><span>NLP</span>
+            </div>
+            <div class="sc-num" style="color:rgba(255,255,255,0.07)">07</div>
           </div>
         </div>
+
+        <div class="skills-hint" style="text-align:center; font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#9aa2ac; margin-top:8px">Hover a card to bring it forward</div>
       </div>
     </section>
 
@@ -1354,6 +1418,71 @@
             window.addEventListener('scroll', onScroll, { passive: true });
             onScroll();
         })();
+    </script>
+    <!-- Skills card fan (scroll-driven) -->
+    <script>
+    (function () {
+      var sec = document.getElementById('skills');
+      if (!sec) return;
+      var stage = sec.querySelector('[data-stage]');
+      var cards = [].slice.call(sec.querySelectorAll('[data-card]'));
+      var n = cards.length, mid = (n - 1) / 2;
+
+      // Apply chip colors from data attributes
+      sec.querySelectorAll('.sc-chips').forEach(function (g) {
+        g.querySelectorAll('span').forEach(function (s) {
+          s.style.background = g.dataset.chipBg; s.style.color = g.dataset.chip;
+        });
+      });
+
+      // Final fan layout per card: [x multiplier, y multiplier, rotation deg]
+      var FAN = [[-3,-0.30,-15],[-2,0.42,-6],[-1,-0.38,3],[0,0.22,-2],[1,-0.36,5],[2,0.44,10],[3,-0.24,16]];
+      var cur = cards.map(function (_, i) { return { x:(i-mid)*3, y:0, r:(i-mid)*2.2, s:1 }; });
+      var hover = null, mode = null;
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      cards.forEach(function (c, i) {
+        c.addEventListener('mouseenter', function () { hover = i; });
+        c.addEventListener('mouseleave', function () { if (hover === i) hover = null; });
+      });
+
+      function ease(p) { return p < 0.5 ? 4*p*p*p : 1 - Math.pow(-2*p + 2, 3) / 2; } // easeInOutCubic
+
+      function tick() {
+        var desktop = window.innerWidth > 960;
+        if (desktop) {
+          mode = 'd';
+          var r = sec.getBoundingClientRect(), vh = window.innerHeight;
+          var total = Math.max(1, r.height - vh);
+          // Fan completes at ~75% of the pinned scroll distance
+          var p = reduce ? 1 : (-r.top + vh * 0.15) / (total * 0.75);
+          p = Math.max(0, Math.min(1, p));
+          var e = ease(p);
+          var dx = Math.max(90, Math.min(160, (stage.clientWidth - 300) / 6));
+          var dy = Math.min(120, stage.clientHeight * 0.2);
+          cards.forEach(function (c, i) {
+            var f = FAN[i] || [i - mid, 0, 0];
+            var sx = (i-mid)*3, sy = (i-mid)*-2, sr = (i-mid)*2.2; // stacked start
+            var tx = sx + (f[0]*dx - sx)*e, ty = sy + (f[1]*dy - sy)*e, tr = sr + (f[2] - sr)*e, ts = 1;
+            var hov = hover === i && e > 0.85;
+            if (hov) { tr = 0; ty -= 20; ts = 1.06; }
+            var k = cur[i];
+            k.x += (tx - k.x)*0.12; k.y += (ty - k.y)*0.12; k.r += (tr - k.r)*0.12; k.s += (ts - k.s)*0.15; // smoothing
+            c.style.transform = 'translate(-50%,-50%) translate3d(' + k.x.toFixed(2) + 'px,' + k.y.toFixed(2) + 'px,0) rotate(' + k.r.toFixed(2) + 'deg) scale(' + k.s.toFixed(3) + ')';
+            c.style.zIndex = hov ? 30 : 10 + i;
+            c.style.boxShadow = hov ? '0 40px 80px -30px rgba(16,23,32,0.5), 0 2px 6px rgba(16,23,32,0.08)' : '';
+          });
+        } else if (mode !== 'm') {
+          mode = 'm';
+          cards.forEach(function (c, i) {
+            c.style.transform = 'rotate(' + (i % 2 ? 1.2 : -1.2) + 'deg)';
+            c.style.zIndex = ''; c.style.boxShadow = '';
+          });
+        }
+        requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    })();
     </script>
 </body>
 </html>
