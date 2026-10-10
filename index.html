@@ -472,6 +472,40 @@
         @media (max-width: 560px) {
           .skills-fan .skills-sticky { padding:40px 24px !important; }
         }
+
+        /* ===== Projects: pinned scroll stage ===== */
+        .pj2-index { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:15px; }
+        .pj2-index li { font-family:'IBM Plex Mono',monospace; font-size:14px; letter-spacing:0.02em; color:#4b5560; transition:color .3s ease, transform .3s ease; }
+        .pj2-index li .n { color:#41c9b4; opacity:.45; margin-right:8px; transition:opacity .3s ease; }
+        .pj2-index li.active { color:#ffffff; transform:translateX(5px); }
+        .pj2-index li.active .n { opacity:1; }
+        .pj2-stage { position:relative; min-height:360px; }
+        .pj2-panel { position:absolute; inset:0; display:flex; flex-direction:column; text-decoration:none; color:#ffffff; opacity:0; transform:translateY(26px); pointer-events:none; transition:opacity .55s cubic-bezier(.22,1,.36,1), transform .55s cubic-bezier(.22,1,.36,1); }
+        .pj2-panel.active { opacity:1; transform:translateY(0); pointer-events:auto; }
+        .pj2-num { position:absolute; right:0; top:-26px; font-size:clamp(120px,15vw,186px); font-weight:800; letter-spacing:-0.06em; line-height:1; color:rgba(255,255,255,0.045); pointer-events:none; z-index:0; }
+        .pj2-top { display:flex; align-items:center; gap:14px; flex-wrap:wrap; position:relative; z-index:1; }
+        .pj2-title { font-size:clamp(30px,4.4vw,46px); font-weight:800; letter-spacing:-0.035em; margin:0; color:#ffffff; }
+        .pj2-meta { font-size:17px; color:#98a1ac; margin-top:12px; position:relative; z-index:1; }
+        .pj2-chips { display:flex; flex-wrap:wrap; gap:8px; margin-top:22px; position:relative; z-index:1; }
+        .pj2-chips span { font-family:'IBM Plex Mono',monospace; font-size:12px; color:#9fe9dd; background:rgba(65,201,180,0.09); border:1px solid rgba(65,201,180,0.18); padding:5px 11px; border-radius:8px; }
+        .pj2-desc { font-size:17px; line-height:1.7; color:#98a1ac; margin:24px 0 0; max-width:620px; position:relative; z-index:1; }
+        .pj2-cta { display:inline-flex; align-items:center; gap:9px; font-size:15px; font-weight:600; color:#ffffff; margin-top:26px; position:relative; z-index:1; }
+        .pj2-cta .ar { color:#41c9b4; transition:transform .25s cubic-bezier(.22,1,.36,1); }
+        .pj2-panel:hover .pj2-cta .ar { transform:translateX(5px); }
+        .pj2-nda { font-family:'IBM Plex Mono',monospace; font-size:13px; color:#6f7a87; margin-top:26px; position:relative; z-index:1; }
+        .pj2-progress { position:absolute; left:0; bottom:0; width:100%; height:2px; background:rgba(255,255,255,0.07); }
+        .pj2-progress > span { display:block; height:100%; width:0; background:#41c9b4; transition:width .1s linear; }
+        @media (max-width:960px){
+          .pj2 { height:auto !important; }
+          .pj2 .pj2-sticky { position:relative !important; height:auto !important; display:block !important; overflow:visible !important; padding:72px 24px !important; }
+          .pj2 .pj2-body { grid-template-columns:1fr !important; gap:0 !important; }
+          .pj2 .pj2-index { display:none !important; }
+          .pj2 .pj2-stage { position:static !important; min-height:0 !important; display:flex; flex-direction:column; }
+          .pj2 .pj2-panel { position:static !important; inset:auto !important; opacity:1 !important; transform:none !important; pointer-events:auto !important; padding:34px 0; border-top:1px solid rgba(255,255,255,0.12); }
+          .pj2 .pj2-num { position:static; font-family:'IBM Plex Mono',monospace; font-size:14px; font-weight:400; letter-spacing:0; color:#41c9b4; margin-bottom:12px; }
+          .pj2 .pj2-progress { display:none !important; }
+        }
+        @media (prefers-reduced-motion: reduce){ .pj2-panel { transition:none; } }
     </style>
 </head>
 <body class="smooth-scroll smooth-scroll-content">
@@ -857,117 +891,83 @@
       </div>
     </section>
 
-    <!-- ===== PROJECTS (redesign) ===== -->
-    <section id="projects" class="rd sec-pad" style="background:#0d1117; color:#ffffff; padding:110px 24px 100px; font-family:'Poppins',system-ui,sans-serif">
-      <div style="max-width:1216px; margin:0 auto">
-        <div class="grid-head" style="display:grid; grid-template-columns:360px 1fr; gap:80px; align-items:end">
-          <div class="stagger-item">
-            <div style="display:flex; align-items:center; gap:12px; font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.18em; text-transform:uppercase; color:#7d8794">
-              <span style="color:#41c9b4">04</span>
-              Projects
-            </div>
-            <h2 style="font-size:clamp(34px,5vw,46px); line-height:1.06; font-weight:800; letter-spacing:-0.035em; margin:20px 0 0; color:#ffffff">Selected<br>work</h2>
-          </div>
-          <p class="stagger-item" style="font-size:17px; line-height:1.7; color:#98a1ac; margin:0 0 8px; max-width:520px">Platforms and tools I designed, built, and shipped end to end.</p>
-        </div>
-
-        <div style="margin-top:60px">
-          <a href="https://www.firefly.cloud/" target="_blank" rel="noopener noreferrer" class="proj-row stagger-item grid-proj-row" style="display:grid; grid-template-columns:64px 1fr 300px; gap:40px; align-items:start; padding:38px 0; border-top:1px solid rgba(255,255,255,0.12); color:#ffffff">
-            <div style="font-family:'IBM Plex Mono',monospace; font-size:14px; color:#41c9b4; padding-top:8px">01</div>
+    <!-- ===== PROJECTS (pinned scroll) ===== -->
+    <section id="projects" class="rd pj2" style="position:relative; height:380vh; background:#0d1117; color:#ffffff; font-family:'Poppins',system-ui,sans-serif">
+      <div class="pj2-sticky" style="position:sticky; top:0; height:100vh; display:flex; flex-direction:column; justify-content:center; overflow:hidden; padding:0 24px">
+        <div style="width:100%; max-width:1216px; margin:0 auto">
+          <div class="grid-head" style="display:grid; grid-template-columns:360px 1fr; gap:80px; align-items:end; margin-bottom:54px">
             <div>
-              <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap">
-                <h3 style="font-size:clamp(28px,4vw,38px); font-weight:700; letter-spacing:-0.035em; margin:0; color:#ffffff">Firefly</h3>
-                <span style="font-size:12px; font-family:'IBM Plex Mono',monospace; color:#41c9b4; border:1px solid rgba(65,201,180,0.35); padding:4px 9px; border-radius:999px">Client</span>
+              <div style="display:flex; align-items:center; gap:12px; font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.18em; text-transform:uppercase; color:#7d8794">
+                <span style="color:#41c9b4">04</span>
+                Projects
               </div>
-              <div style="font-size:17px; color:#98a1ac; margin-top:10px">Systems Integration &middot; HubSpot CRM</div>
-              <div style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:#6f7a87; margin-top:18px">HubSpot &nbsp;/&nbsp; REST APIs &nbsp;/&nbsp; Automation</div>
+              <h2 style="font-size:clamp(34px,5vw,46px); line-height:1.06; font-weight:800; letter-spacing:-0.035em; margin:20px 0 0; color:#ffffff">Selected<br>work</h2>
             </div>
-            <div>
-              <p style="font-size:16px; line-height:1.65; color:#98a1ac; margin:0">Connected Firefly's main application, HubSpot CRM, and accounting system so a completed purchase automatically creates and syncs the deal, replacing <span style="color:#ffffff; font-weight:600">hours of manual data entry</span> with an automated pipeline.</p>
-              <span style="display:inline-flex; align-items:center; gap:8px; font-size:14px; font-weight:600; color:#ffffff; margin-top:16px">Visit Firefly <span style="color:#41c9b4">&#8594;</span></span>
-            </div>
-          </a>
-
-          <a href="https://www.lokellist.com/?bypass=2026" target="_blank" rel="noopener noreferrer" class="proj-row stagger-item grid-proj-row" style="display:grid; grid-template-columns:64px 1fr 300px; gap:40px; align-items:start; padding:38px 0; border-top:1px solid rgba(255,255,255,0.12); color:#ffffff">
-            <div style="font-family:'IBM Plex Mono',monospace; font-size:14px; color:#41c9b4; padding-top:8px">02</div>
-            <div>
-              <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap">
-                <h3 style="font-size:clamp(28px,4vw,38px); font-weight:700; letter-spacing:-0.035em; margin:0; color:#ffffff">Lokellist</h3>
-                <span style="font-size:12px; font-family:'IBM Plex Mono',monospace; color:#41c9b4; border:1px solid rgba(65,201,180,0.35); padding:4px 9px; border-radius:999px">Live</span>
-              </div>
-              <div style="font-size:17px; color:#98a1ac; margin-top:10px">Real Estate &amp; Property Listings Platform &middot; Web App</div>
-              <div style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:#6f7a87; margin-top:18px">React &nbsp;/&nbsp; Node.js &nbsp;/&nbsp; REST APIs &nbsp;/&nbsp; Authentication</div>
-            </div>
-            <div>
-              <p style="font-size:16px; line-height:1.65; color:#98a1ac; margin:0">A platform for browsing and managing property listings, connecting buyers, agents, and sellers, built end to end with secure authentication.</p>
-              <span style="display:inline-flex; align-items:center; gap:8px; font-size:14px; font-weight:600; color:#ffffff; margin-top:16px">Project overview <span style="color:#41c9b4">&#8594;</span></span>
-            </div>
-          </a>
-
-          <div class="proj-row stagger-item grid-proj-row" style="display:grid; grid-template-columns:64px 1fr 300px; gap:40px; align-items:start; padding:38px 0; border-top:1px solid rgba(255,255,255,0.12); color:#ffffff">
-            <div style="font-family:'IBM Plex Mono',monospace; font-size:14px; color:#41c9b4; padding-top:8px">03</div>
-            <div>
-              <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap">
-                <h3 style="font-size:clamp(28px,4vw,38px); font-weight:700; letter-spacing:-0.035em; margin:0; color:#ffffff">Healthcare Call-Center App</h3>
-                <span style="font-size:12px; font-family:'IBM Plex Mono',monospace; color:#98a1ac; border:1px solid rgba(255,255,255,0.18); padding:4px 9px; border-radius:999px">Confidential</span>
-              </div>
-              <div style="font-size:17px; color:#98a1ac; margin-top:10px">Healthcare technology company &middot; Arizona</div>
-              <div style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:#6f7a87; margin-top:18px">Software Engineering &nbsp;/&nbsp; Integrations &nbsp;/&nbsp; Testing</div>
-            </div>
-            <div>
-              <p style="font-size:16px; line-height:1.65; color:#98a1ac; margin:0">Ongoing software engineering for a call-center application at a healthcare technology company. Client and details confidential.</p>
-              <span style="display:inline-block; font-size:13px; font-family:'IBM Plex Mono',monospace; color:#6f7a87; margin-top:16px">Under NDA</span>
-            </div>
+            <p style="font-size:17px; line-height:1.7; color:#98a1ac; margin:0 0 8px; max-width:520px">Platforms and tools I designed, built, and shipped end to end.</p>
           </div>
 
-          <a href="https://www.cypressbridge.dev/" target="_blank" rel="noopener noreferrer" class="proj-row stagger-item grid-proj-row" style="display:grid; grid-template-columns:64px 1fr 300px; gap:40px; align-items:start; padding:38px 0; border-top:1px solid rgba(255,255,255,0.12); color:#ffffff">
-            <div style="font-family:'IBM Plex Mono',monospace; font-size:14px; color:#41c9b4; padding-top:8px">04</div>
-            <div>
-              <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap">
-                <h3 style="font-size:clamp(28px,4vw,38px); font-weight:700; letter-spacing:-0.035em; margin:0; color:#ffffff">Cypress Hospital Benchmarks</h3>
-                <span style="font-size:12px; font-family:'IBM Plex Mono',monospace; color:#98a1ac; border:1px solid rgba(255,255,255,0.18); padding:4px 9px; border-radius:999px">Client</span>
-              </div>
-              <div style="font-size:17px; color:#98a1ac; margin-top:10px">USA CMS Data &amp; Analytics &middot; Cypress Bridge</div>
-              <div style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:#6f7a87; margin-top:18px">GitHub Actions &nbsp;/&nbsp; ETL &nbsp;/&nbsp; Supabase &nbsp;/&nbsp; Dashboard</div>
+          <div class="pj2-body" style="display:grid; grid-template-columns:210px 1fr; gap:72px; align-items:start">
+            <ol class="pj2-index">
+            <li data-idx="0"><span class="n">01</span> Firefly</li>
+            <li data-idx="1"><span class="n">02</span> Lokellist</li>
+            <li data-idx="2"><span class="n">03</span> Healthcare</li>
+            <li data-idx="3"><span class="n">04</span> Cypress</li>
+            <li data-idx="4"><span class="n">05</span> Smart DART</li>
+            <li data-idx="5"><span class="n">06</span> AI Voice</li>
+            </ol>
+            <div class="pj2-stage">
+            <a class="pj2-panel active" data-panel="0" href="https://www.firefly.cloud/" target="_blank" rel="noopener noreferrer">
+              <div class="pj2-num">01</div>
+              <div class="pj2-top"><h3 class="pj2-title">Firefly</h3><span class="pj-badge teal">Client</span></div>
+              <div class="pj2-meta">Systems Integration &middot; HubSpot CRM</div>
+              <div class="pj2-chips"><span>HubSpot</span><span>REST APIs</span><span>Automation</span></div>
+              <p class="pj2-desc">Connected Firefly&rsquo;s main application, HubSpot CRM, and accounting system so a completed purchase automatically creates and syncs the deal, replacing <span style="color:#ffffff; font-weight:600">hours of manual data entry</span> with an automated pipeline.</p>
+              <span class="pj2-cta">Visit Firefly <span class="ar">&#8594;</span></span>
+            </a>
+            <a class="pj2-panel" data-panel="1" href="https://www.lokellist.com/?bypass=2026" target="_blank" rel="noopener noreferrer">
+              <div class="pj2-num">02</div>
+              <div class="pj2-top"><h3 class="pj2-title">Lokellist</h3><span class="pj-badge teal">Live</span></div>
+              <div class="pj2-meta">Real Estate &amp; Property Listings Platform &middot; Web App</div>
+              <div class="pj2-chips"><span>React</span><span>Node.js</span><span>REST APIs</span><span>Authentication</span></div>
+              <p class="pj2-desc">A platform for browsing and managing property listings, connecting buyers, agents, and sellers, built end to end with secure authentication.</p>
+              <span class="pj2-cta">Project overview <span class="ar">&#8594;</span></span>
+            </a>
+            <div class="pj2-panel" data-panel="2">
+              <div class="pj2-num">03</div>
+              <div class="pj2-top"><h3 class="pj2-title">Healthcare Call-Center App</h3><span class="pj-badge mute">Confidential</span></div>
+              <div class="pj2-meta">Healthcare technology company &middot; Arizona</div>
+              <div class="pj2-chips"><span>Software Engineering</span><span>Integrations</span><span>Testing</span></div>
+              <p class="pj2-desc">Ongoing software engineering for a call-center application at a healthcare technology company. Client and details confidential.</p>
+              <span class="pj2-nda">Under NDA</span>
             </div>
-            <div>
-              <p style="font-size:16px; line-height:1.65; color:#98a1ac; margin:0">Ingests USA CMS data via a monthly GitHub-hosted pipeline, transformed and stored with a dashboard for hospital benchmark performance metrics.</p>
-              <span style="display:inline-flex; align-items:center; gap:8px; font-size:14px; font-weight:600; color:#ffffff; margin-top:16px">Project overview <span style="color:#41c9b4">&#8594;</span></span>
+            <a class="pj2-panel" data-panel="3" href="https://www.cypressbridge.dev/" target="_blank" rel="noopener noreferrer">
+              <div class="pj2-num">04</div>
+              <div class="pj2-top"><h3 class="pj2-title">Cypress Hospital Benchmarks</h3><span class="pj-badge teal">Client</span></div>
+              <div class="pj2-meta">USA CMS Data &amp; Analytics &middot; Cypress Bridge</div>
+              <div class="pj2-chips"><span>GitHub Actions</span><span>ETL</span><span>Supabase</span><span>Dashboard</span></div>
+              <p class="pj2-desc">Ingests USA CMS data via a monthly GitHub-hosted pipeline, transformed and stored with a dashboard for hospital benchmark performance metrics.</p>
+              <span class="pj2-cta">Project overview <span class="ar">&#8594;</span></span>
+            </a>
+            <a class="pj2-panel" data-panel="4" href="https://dartcms.apps.asu.edu" target="_blank" rel="noopener noreferrer">
+              <div class="pj2-num">05</div>
+              <div class="pj2-top"><h3 class="pj2-title">Smart DART</h3><span class="pj-badge mute">ASU</span></div>
+              <div class="pj2-meta">Campus Ride Management &middot; Web App</div>
+              <div class="pj2-chips"><span>React</span><span>Vite</span><span>AWS Lambda</span><span>API Gateway</span><span>Terraform</span></div>
+              <p class="pj2-desc">On-campus golf cart ride management for approved riders, a scalable system for riders, drivers, carts, and schedules with secure ASU authentication.</p>
+              <span class="pj2-cta">Project overview <span class="ar">&#8594;</span></span>
+            </a>
+            <a class="pj2-panel" data-panel="5" href="https://github.com/JeelKakadiya3240/Res_AI" target="_blank" rel="noopener noreferrer">
+              <div class="pj2-num">06</div>
+              <div class="pj2-top"><h3 class="pj2-title">AI Voice Order Assistant</h3><span class="pj-badge mute">AI / Voice</span></div>
+              <div class="pj2-meta">Restaurant Order &amp; Support System &middot; Personal</div>
+              <div class="pj2-chips"><span>Voice AI</span><span>Real-time DB</span><span>Live Dashboard</span></div>
+              <p class="pj2-desc">An AI voice assistant that takes phone orders, handles requests, and runs database operations, pending orders surface in real time to restaurant staff.</p>
+              <span class="pj2-cta">Repository <span class="ar">&#8594;</span></span>
+            </a>
             </div>
-          </a>
-
-          <a href="https://dartcms.apps.asu.edu" target="_blank" rel="noopener noreferrer" class="proj-row stagger-item grid-proj-row" style="display:grid; grid-template-columns:64px 1fr 300px; gap:40px; align-items:start; padding:38px 0; border-top:1px solid rgba(255,255,255,0.12); color:#ffffff">
-            <div style="font-family:'IBM Plex Mono',monospace; font-size:14px; color:#41c9b4; padding-top:8px">05</div>
-            <div>
-              <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap">
-                <h3 style="font-size:clamp(28px,4vw,38px); font-weight:700; letter-spacing:-0.035em; margin:0; color:#ffffff">Smart DART</h3>
-                <span style="font-size:12px; font-family:'IBM Plex Mono',monospace; color:#98a1ac; border:1px solid rgba(255,255,255,0.18); padding:4px 9px; border-radius:999px">ASU</span>
-              </div>
-              <div style="font-size:17px; color:#98a1ac; margin-top:10px">Campus Ride Management &middot; Web App</div>
-              <div style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:#6f7a87; margin-top:18px">React &nbsp;/&nbsp; Vite &nbsp;/&nbsp; AWS Lambda &nbsp;/&nbsp; API Gateway &nbsp;/&nbsp; Terraform</div>
-            </div>
-            <div>
-              <p style="font-size:16px; line-height:1.65; color:#98a1ac; margin:0">On-campus golf cart ride management for approved riders, a scalable system for riders, drivers, carts, and schedules with secure ASU authentication.</p>
-              <span style="display:inline-flex; align-items:center; gap:8px; font-size:14px; font-weight:600; color:#ffffff; margin-top:16px">Project overview <span style="color:#41c9b4">&#8594;</span></span>
-            </div>
-          </a>
-
-          <a href="https://github.com/JeelKakadiya3240/Res_AI" target="_blank" rel="noopener noreferrer" class="proj-row stagger-item grid-proj-row" style="display:grid; grid-template-columns:64px 1fr 300px; gap:40px; align-items:start; padding:38px 0; border-top:1px solid rgba(255,255,255,0.12); border-bottom:1px solid rgba(255,255,255,0.12); color:#ffffff">
-            <div style="font-family:'IBM Plex Mono',monospace; font-size:14px; color:#41c9b4; padding-top:8px">06</div>
-            <div>
-              <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap">
-                <h3 style="font-size:clamp(28px,4vw,38px); font-weight:700; letter-spacing:-0.035em; margin:0; color:#ffffff">AI Voice Order Assistant</h3>
-                <span style="font-size:12px; font-family:'IBM Plex Mono',monospace; color:#98a1ac; border:1px solid rgba(255,255,255,0.18); padding:4px 9px; border-radius:999px">AI / Voice</span>
-              </div>
-              <div style="font-size:17px; color:#98a1ac; margin-top:10px">Restaurant Order &amp; Support System &middot; Personal</div>
-              <div style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:#6f7a87; margin-top:18px">Voice AI &nbsp;/&nbsp; Real-time DB &nbsp;/&nbsp; Live Dashboard</div>
-            </div>
-            <div>
-              <p style="font-size:16px; line-height:1.65; color:#98a1ac; margin:0">An AI voice assistant that takes phone orders, handles requests, and runs database operations, pending orders surface in real time to restaurant staff.</p>
-              <span style="display:inline-flex; align-items:center; gap:8px; font-size:14px; font-weight:600; color:#ffffff; margin-top:16px">Repository <span style="color:#41c9b4">&#8594;</span></span>
-            </div>
-          </a>
+          </div>
         </div>
+        <div class="pj2-progress"><span></span></div>
       </div>
     </section>
 
@@ -1512,6 +1512,35 @@
           r.style.transform = 'translateY(' + ((1 - e) * y0).toFixed(1) + 'px) scale(' + scale.toFixed(3) + ')';
           r.style.filter = e > 0.995 ? 'none' : 'blur(' + ((1 - e) * blur0).toFixed(2) + 'px)';
         });
+        requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    })();
+    </script>
+    <!-- Projects pinned scroll driver -->
+    <script>
+    (function(){
+      var sec = document.getElementById('projects');
+      if(!sec) return;
+      var panels = [].slice.call(sec.querySelectorAll('.pj2-panel'));
+      var items  = [].slice.call(sec.querySelectorAll('.pj2-index li'));
+      var bar    = sec.querySelector('.pj2-progress > span');
+      var n = panels.length, cur = -1;
+      function set(idx){
+        if(idx === cur) return;
+        cur = idx;
+        for(var i=0;i<panels.length;i++) panels[i].classList.toggle('active', i===idx);
+        for(var j=0;j<items.length;j++) items[j].classList.toggle('active', j===idx);
+      }
+      function tick(){
+        if(window.innerWidth > 960){
+          var r = sec.getBoundingClientRect(), vh = window.innerHeight;
+          var total = Math.max(1, r.height - vh);
+          var p = -r.top / total; if(p<0) p=0; if(p>1) p=1;
+          if(bar) bar.style.width = (p*100).toFixed(2) + '%';
+          var idx = Math.floor(p * n - 1e-6); if(idx<0) idx=0; if(idx>n-1) idx=n-1;
+          set(idx);
+        }
         requestAnimationFrame(tick);
       }
       requestAnimationFrame(tick);
