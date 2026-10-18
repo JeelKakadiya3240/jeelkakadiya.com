@@ -482,11 +482,14 @@
         .pj3-navitem.active { color:#ffffff; transform:translateX(5px); }
         .pj3-navitem.active .n { opacity:1; }
         .pj3-stack { position:relative; }
-        .pj3-card { position:sticky; top:var(--top); min-height:62vh; border-radius:26px; border:1px solid rgba(255,255,255,0.09); border-top:2px solid var(--accent); background-color:var(--bg); background-image:linear-gradient(168deg, rgba(255,255,255,0.055), rgba(255,255,255,0) 44%); box-shadow:0 -6px 22px rgba(0,0,0,0.32), 0 26px 60px -22px rgba(0,0,0,0.6); overflow:hidden; display:flex; flex-direction:column; transform-origin:top center; will-change:transform; }
+        .pj3 { --pjbase:92px; --pjpeek:62px; }
+        .pj3-wrap, .pj3-stack, .pj3-card, .pj3-peek, .pj3-content { box-sizing:border-box; }
+        .pj3-stack { min-width:0; }
+        .pj3-card { position:sticky; top:calc(var(--pjbase) + var(--i) * var(--pjpeek)); width:100%; min-height:62vh; border-radius:26px; border:1px solid rgba(255,255,255,0.09); border-top:2px solid var(--accent); background-color:var(--bg); background-image:linear-gradient(168deg, rgba(255,255,255,0.055), rgba(255,255,255,0) 44%); box-shadow:0 -6px 22px rgba(0,0,0,0.32), 0 26px 60px -22px rgba(0,0,0,0.6); overflow:hidden; display:flex; flex-direction:column; transform-origin:top center; will-change:transform; }
         .pj3-card::after { content:''; position:absolute; inset:0; border-radius:inherit; background:#05080b; opacity:calc(var(--cover, 0) * 0.42); pointer-events:none; z-index:3; }
         .pj3-peek { height:60px; flex:none; display:flex; align-items:center; gap:14px; padding:0 40px; }
         .pj3-n { font-family:'IBM Plex Mono',monospace; font-size:14px; color:var(--accent); }
-        .pj3-t { font-size:21px; font-weight:700; letter-spacing:-0.02em; color:#ffffff; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+        .pj3-t { flex:1; min-width:0; font-size:21px; font-weight:700; letter-spacing:-0.02em; color:#ffffff; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
         .pj3-peek .pj-badge { margin-left:auto; flex:none; }
         .pj3-content { position:relative; flex:1; padding:6px 40px 40px; }
         .pj3-ghost { position:absolute; right:30px; top:-14px; font-size:clamp(96px,12vw,158px); font-weight:800; letter-spacing:-0.06em; line-height:1; color:rgba(255,255,255,0.05); pointer-events:none; z-index:0; }
@@ -499,13 +502,20 @@
         .pj3-cta:hover .ar { transform:translateX(5px); }
         .pj3-nda { position:relative; z-index:1; display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:13px; color:rgba(255,255,255,0.5); margin-top:28px; }
         @media (max-width:960px){
+          .pj3 { --pjbase:74px; --pjpeek:50px; padding:60px 16px 72px !important; }
+          .pj3-head { margin-bottom:28px !important; }
           .pj3-wrap { grid-template-columns:1fr !important; gap:0 !important; }
           .pj3-nav { display:none !important; }
-          .pj3-card { position:static !important; top:auto !important; min-height:0 !important; margin-top:18px !important; }
-          .pj3-stack > .pj3-card:first-child { margin-top:0 !important; }
-          .pj3-peek { height:auto; padding:24px 24px 0; }
-          .pj3-content { padding:12px 24px 30px; }
-          .pj3-ghost { font-size:72px; top:0; right:22px; }
+          .pj3-card { min-height:auto; }
+          .pj3-peek { height:50px; padding:0 22px; }
+          .pj3-t { font-size:17px; }
+          .pj3-content { padding:6px 22px 26px; }
+          .pj3-ghost { font-size:78px; top:-4px; right:14px; }
+          .pj3-meta { font-size:15px; margin-top:12px; }
+          .pj3-chips { margin-top:18px; }
+          .pj3-chips span { font-size:11px; padding:4px 9px; }
+          .pj3-desc { font-size:15px; margin-top:20px; max-width:none; }
+          .pj3-cta, .pj3-nda { margin-top:22px; }
         }
     </style>
 </head>
@@ -915,7 +925,7 @@
             <div class="pj3-navitem" data-i="5"><span class="n">06</span> AI Voice</div>
         </nav>
         <div class="pj3-stack">
-            <article class="pj3-card" style="--top:92px; --bg:#0f2e29; --accent:#41c9b4">
+            <article class="pj3-card" style="--i:0; --bg:#0f2e29; --accent:#41c9b4">
               <div class="pj3-peek"><span class="pj3-n">01</span><span class="pj3-t">Firefly</span><span class="pj-badge teal">Client</span></div>
               <div class="pj3-content">
                 <div class="pj3-ghost">01</div>
@@ -925,7 +935,7 @@
                 <a class="pj3-cta" href="https://www.firefly.cloud/" target="_blank" rel="noopener noreferrer">Visit Firefly <span class="ar">&#8594;</span></a>
               </div>
             </article>
-            <article class="pj3-card" style="--top:154px; --bg:#102a3c; --accent:#4ab7d6">
+            <article class="pj3-card" style="--i:1; --bg:#102a3c; --accent:#4ab7d6">
               <div class="pj3-peek"><span class="pj3-n">02</span><span class="pj3-t">Lokellist</span><span class="pj-badge teal">Live</span></div>
               <div class="pj3-content">
                 <div class="pj3-ghost">02</div>
@@ -935,7 +945,7 @@
                 <a class="pj3-cta" href="https://www.lokellist.com/?bypass=2026" target="_blank" rel="noopener noreferrer">Project overview <span class="ar">&#8594;</span></a>
               </div>
             </article>
-            <article class="pj3-card" style="--top:216px; --bg:#1a2130; --accent:#7aa7cf">
+            <article class="pj3-card" style="--i:2; --bg:#1a2130; --accent:#7aa7cf">
               <div class="pj3-peek"><span class="pj3-n">03</span><span class="pj3-t">Healthcare Call-Center App</span><span class="pj-badge mute">Confidential</span></div>
               <div class="pj3-content">
                 <div class="pj3-ghost">03</div>
@@ -945,7 +955,7 @@
                 <span class="pj3-nda">Under NDA</span>
               </div>
             </article>
-            <article class="pj3-card" style="--top:278px; --bg:#0e2a3e; --accent:#46a8d0">
+            <article class="pj3-card" style="--i:3; --bg:#0e2a3e; --accent:#46a8d0">
               <div class="pj3-peek"><span class="pj3-n">04</span><span class="pj3-t">Cypress Hospital Benchmarks</span><span class="pj-badge teal">Client</span></div>
               <div class="pj3-content">
                 <div class="pj3-ghost">04</div>
@@ -955,7 +965,7 @@
                 <a class="pj3-cta" href="https://www.cypressbridge.dev/" target="_blank" rel="noopener noreferrer">Project overview <span class="ar">&#8594;</span></a>
               </div>
             </article>
-            <article class="pj3-card" style="--top:340px; --bg:#122c33; --accent:#55c6c9">
+            <article class="pj3-card" style="--i:4; --bg:#122c33; --accent:#55c6c9">
               <div class="pj3-peek"><span class="pj3-n">05</span><span class="pj3-t">Smart DART</span><span class="pj-badge mute">ASU</span></div>
               <div class="pj3-content">
                 <div class="pj3-ghost">05</div>
@@ -965,7 +975,7 @@
                 <a class="pj3-cta" href="https://dartcms.apps.asu.edu" target="_blank" rel="noopener noreferrer">Project overview <span class="ar">&#8594;</span></a>
               </div>
             </article>
-            <article class="pj3-card" style="--top:402px; --bg:#0e2d28; --accent:#4fd6b8">
+            <article class="pj3-card" style="--i:5; --bg:#0e2d28; --accent:#4fd6b8">
               <div class="pj3-peek"><span class="pj3-n">06</span><span class="pj3-t">AI Voice Order Assistant</span><span class="pj-badge mute">AI / Voice</span></div>
               <div class="pj3-content">
                 <div class="pj3-ghost">06</div>
@@ -1532,30 +1542,31 @@
       if(!sec) return;
       var cards = [].slice.call(sec.querySelectorAll('.pj3-card'));
       var navs  = [].slice.call(sec.querySelectorAll('.pj3-navitem'));
-      var BASE = 92, PEEK = 62, cur = -1;
+      var cur = -1;
       var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       function tick(){
-        if(window.innerWidth > 960){
-          var vh = window.innerHeight, n = cards.length, active = 0;
-          for(var i=0;i<n;i++){
-            var stickTop = BASE + i*PEEK;
-            if(cards[i].getBoundingClientRect().top <= stickTop + 2) active = i;
-            // depth: how covered this card is by the next one (0 open -> 1 fully covered)
-            var cover = 0;
-            if(i < n-1){
-              var nt = cards[i+1].getBoundingClientRect().top;
-              var span = vh - (stickTop + PEEK);
-              if(span > 0){ cover = (vh - nt) / span; cover = cover<0?0:(cover>1?1:cover); }
-            }
-            if(!reduce){
-              cards[i].style.setProperty('--cover', cover.toFixed(3));
-              cards[i].style.transform = cover > 0.001 ? 'scale(' + (1 - cover*0.05).toFixed(4) + ')' : '';
-            }
+        var mobile = window.innerWidth <= 960;
+        var BASE = mobile ? 74 : 92, PEEK = mobile ? 50 : 62;
+        var depthScale = mobile ? 0.035 : 0.05;
+        var vh = window.innerHeight, n = cards.length, active = 0;
+        for(var i=0;i<n;i++){
+          var stickTop = BASE + i*PEEK;
+          if(cards[i].getBoundingClientRect().top <= stickTop + 2) active = i;
+          // depth: how covered this card is by the next one (0 open -> 1 fully covered)
+          var cover = 0;
+          if(i < n-1){
+            var nt = cards[i+1].getBoundingClientRect().top;
+            var span = vh - (stickTop + PEEK);
+            if(span > 0){ cover = (vh - nt) / span; cover = cover<0?0:(cover>1?1:cover); }
           }
-          if(active !== cur){
-            cur = active;
-            for(var j=0;j<navs.length;j++) navs[j].classList.toggle('active', j===active);
+          if(!reduce){
+            cards[i].style.setProperty('--cover', cover.toFixed(3));
+            cards[i].style.transform = cover > 0.001 ? 'scale(' + (1 - cover*depthScale).toFixed(4) + ')' : '';
           }
+        }
+        if(active !== cur){
+          cur = active;
+          for(var j=0;j<navs.length;j++) navs[j].classList.toggle('active', j===active);
         }
         requestAnimationFrame(tick);
       }
