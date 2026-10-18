@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Which database should a small business use? Supabase vs. AWS · Jeel Kakadiya</title>
+<meta name="description" content="For a business serving 1–100 users, which database is the right call: Supabase or AWS? A practical, no-hype comparison of cost, speed, and when each one actually wins.">
+<link rel="canonical" href="https://www.jeelkakadiya.com/blog/supabase-vs-aws-for-small-business">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5BG9Y5WFEK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5BG9Y5WFEK');
+</script>
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Jeel Kakadiya">
+<meta property="og:title" content="Which database should a small business use? Supabase vs. AWS">
+<meta property="og:description" content="For a business serving 1–100 users, which database is the right call: Supabase or AWS? A practical, no-hype comparison of cost, speed, and when each one wins.">
+<meta property="og:url" content="https://www.jeelkakadiya.com/blog/supabase-vs-aws-for-small-business">
+<meta property="og:image" content="https://www.jeelkakadiya.com/assets/og-image-v4.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Which database should a small business use? Supabase vs. AWS">
+<meta name="twitter:description" content="For a business serving 1–100 users, which database is the right call: Supabase or AWS? A practical, no-hype comparison.">
+<meta name="twitter:image" content="https://www.jeelkakadiya.com/assets/og-image-v4.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Which database should a small business use? Supabase vs. AWS",
+  "description": "For a business serving 1–100 users, which database is the right call: Supabase or AWS? A practical, no-hype comparison of cost, speed, and when each one actually wins.",
+  "image": "https://www.jeelkakadiya.com/assets/og-image-v4.png",
+  "datePublished": "2026-10-18",
+  "dateModified": "2026-10-18",
+  "author": { "@type": "Person", "name": "Jeel Kakadiya", "url": "https://www.jeelkakadiya.com/" },
+  "publisher": { "@type": "Person", "name": "Jeel Kakadiya" },
+  "mainEntityOfPage": "https://www.jeelkakadiya.com/blog/supabase-vs-aws-for-small-business"
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; font-family: Poppins, system-ui, sans-serif; background: #ffffff; color: #101720; -webkit-font-smoothing: antialiased; }
+  a { color: #0e7c6f; text-decoration: none; }
+  img { max-width: 100%; }
+  h1, h2, h3 { font-family: 'Poppins', system-ui, sans-serif; }
+  .nav-link { color: #3f4855; transition: color .2s ease; }
+  .nav-link:hover { color: #0e7c6f; }
+  .prose { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+  .prose p { font-size: 18px; line-height: 1.78; color: #374151; margin: 0 0 22px; }
+  .prose h2 { font-size: clamp(23px,3vw,29px); font-weight: 600; letter-spacing: -0.02em; color: #101720; margin: 46px 0 14px; }
+  .prose h3 { font-size: 20px; font-weight: 600; color: #101720; margin: 30px 0 8px; }
+  .prose ul { margin: 0 0 22px; padding: 0; list-style: none; }
+  .prose li { font-size: 18px; line-height: 1.7; color: #374151; margin: 0 0 12px; position: relative; padding-left: 22px; }
+  .prose li::before { content: ""; position: absolute; left: 2px; top: 11px; width: 7px; height: 7px; border-radius: 50%; background: #0e7c6f; }
+  .prose strong { color: #101720; font-weight: 600; }
+  .prose blockquote { margin: 28px 0; padding: 4px 0 4px 22px; border-left: 3px solid #0e7c6f; color: #1a2230; font-size: 20px; font-weight: 500; line-height: 1.55; }
+  .btn-primary { background:#0f1720; color:#ffffff; transition: background .2s ease, transform .2s ease; }
+  .btn-primary:hover { background:#0e7c6f; transform: translateX(2px); }
+
+  /* visuals */
+  .viz { margin: 30px 0; border: 1px solid #e7e9ec; border-radius: 16px; padding: 24px 22px; background: #fafbfc; }
+  .viz-label { font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: #8d949e; margin-bottom: 16px; }
+  .viz-note { font-size: 15px; line-height: 1.6; color: #5c6470; margin: 14px 0 0; }
+  .scale-track { position: relative; height: 12px; border-radius: 999px; background: #eef1f4; overflow: hidden; }
+  .scale-zone { position: absolute; left: 0; top: 0; bottom: 0; width: 24%; background: #0e7c6f; border-radius: 999px; }
+  .scale-marks { display: flex; justify-content: space-between; font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #8d949e; margin-top: 10px; }
+  .cmp-scroll { overflow-x: auto; margin: 6px 0 4px; -webkit-overflow-scrolling: touch; }
+  table.cmp { width: 100%; min-width: 520px; border-collapse: collapse; font-size: 15px; }
+  table.cmp th, table.cmp td { text-align: left; padding: 13px 14px; border-bottom: 1px solid #eceef1; vertical-align: top; line-height: 1.5; }
+  table.cmp thead th { font-family: 'IBM Plex Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.07em; color: #8d949e; font-weight: 500; }
+  table.cmp thead th.sb { color: #0e7c6f; }
+  table.cmp td:first-child, table.cmp th:first-child { font-weight: 600; color: #101720; width: 30%; }
+  table.cmp td { color: #4a5360; }
+  .picks { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 26px 0; }
+  .pick { border: 1px solid #e7e9ec; border-radius: 16px; padding: 22px 22px 8px; background: #ffffff; }
+  .pick.sb { border-color: rgba(14,124,111,0.3); background: #f4fbf9; }
+  .pick-h { font-weight: 700; font-size: 17px; letter-spacing: -0.01em; color: #101720; margin-bottom: 12px; }
+  .pick.sb .pick-h { color: #0b675c; }
+  .pick ul { margin: 0; padding: 0; list-style: none; }
+  .pick li { position: relative; padding-left: 20px; font-size: 15px; line-height: 1.55; color: #44505c; margin: 0 0 12px; }
+  .pick li::before { content: ""; position: absolute; left: 0; top: 8px; width: 6px; height: 6px; border-radius: 50%; background: #0e7c6f; }
+  .pick.aws li::before { background: #7a8699; }
+
+  @media (max-width: 640px) { .picks { grid-template-columns: 1fr; } }
+  @media (max-width: 700px) { .nav-links-desktop { display:none; } }
+</style>
+</head>
+<body>
+<div style="width:100%; overflow-x:hidden">
+
+<nav style="position:sticky; top:0; z-index:50; background:rgba(255,255,255,0.92); backdrop-filter:blur(10px); border-bottom:1px solid #ececec">
+  <div style="max-width:1000px; margin:0 auto; padding:0 24px; height:62px; display:flex; align-items:center; justify-content:space-between">
+    <a href="/" style="font-size:22px; font-weight:700; letter-spacing:-0.02em; color:#101720; display:flex; align-items:baseline; gap:6px">Jeel K<span style="width:7px; height:7px; border-radius:50%; background:#0e7c6f; display:inline-block"></span></a>
+    <div class="nav-links-desktop" style="display:flex; align-items:center; gap:34px; font-size:15px">
+      <a href="/#projects" class="nav-link">Projects</a>
+      <a href="/#services" class="nav-link">Services</a>
+      <a href="/blog" class="nav-link">Blog</a>
+      <a href="/#contact" class="nav-link">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<article style="padding:64px 0 40px">
+  <div class="prose">
+    <a href="/blog" style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:#0e7c6f">&larr; Blog</a>
+    <h1 style="font-size:clamp(32px,5vw,48px); line-height:1.1; font-weight:700; letter-spacing:-0.03em; margin:18px 0 0; color:#101720">Which database should a small business use? Supabase vs. AWS</h1>
+    <div style="display:flex; flex-wrap:wrap; gap:8px 16px; align-items:center; margin-top:18px; font-size:14px; color:#8d949e; font-family:'IBM Plex Mono',monospace">
+      <span>Oct 18, 2026</span><span>·</span><span>7 min read</span><span>·</span><span>Jeel Kakadiya</span>
+    </div>
+  </div>
+
+  <div class="prose" style="margin-top:40px">
+    <p>&ldquo;Which database should we use?&rdquo; is one of the first technical questions a new business asks, and it is almost always asked too early and answered too seriously. If you are serving somewhere between 1 and 100 customers, users, or daily records, the honest truth is that almost any modern database will handle you comfortably. The real decision is not about raw power. It is about how fast you can ship, how much you will pay, and how much of your weekend you want to spend on maintenance.</p>
+
+    <blockquote>At 1&ndash;100 users, your database is almost never the bottleneck. Your time is.</blockquote>
+
+    <div class="viz">
+      <div class="viz-label">Where your business sits</div>
+      <div class="scale-track"><div class="scale-zone"></div></div>
+      <div class="scale-marks"><span>1</span><span>100</span><span>10k</span><span>100k</span><span>1M+</span></div>
+      <p class="viz-note">The green zone is where most small businesses live. At this scale, almost every modern database is fast enough, so the choice comes down to speed to launch and cost, not raw horsepower.</p>
+    </div>
+
+    <h2>What you&rsquo;re actually choosing between</h2>
+    <p>&ldquo;Supabase or AWS&rdquo; is not quite an apples-to-apples question, and it helps to see why.</p>
+    <p><strong>Supabase</strong> is a managed Postgres database with the common extras already wired in: user authentication, auto-generated APIs, file storage, and realtime updates. You create a project and you have a working backend in minutes.</p>
+    <p><strong>AWS</strong> is not a database. It is a toolbox of them: RDS and Aurora for relational data (Postgres or MySQL), DynamoDB for NoSQL, and more, plus everything that surrounds them. It is extraordinarily powerful, and it expects you to assemble and operate the pieces yourself.</p>
+
+    <h2>Why Supabase usually wins at this size</h2>
+    <ul>
+      <li><strong>You launch in minutes, not days.</strong> The database, login, and APIs come together instead of being three separate projects.</li>
+      <li><strong>It is still just Postgres.</strong> A real, standard relational database, not a toy and not a proprietary format you can&rsquo;t walk away from.</li>
+      <li><strong>The cost is predictable.</strong> A generous free tier, then a flat monthly price, instead of a dozen metered line items you have to forecast.</li>
+      <li><strong>There is less to maintain.</strong> Backups, updates, and scaling are handled, so your attention stays on the product.</li>
+    </ul>
+    <p>For a business with 1&ndash;100 users, that is usually the whole game: ship something useful quickly, keep costs flat, and avoid becoming a part-time database administrator.</p>
+
+    <div class="viz" style="padding:20px 18px">
+      <div class="viz-label" style="margin-left:4px">Supabase vs. AWS at small scale</div>
+      <div class="cmp-scroll">
+        <table class="cmp">
+          <thead>
+            <tr><th>&nbsp;</th><th class="sb">Supabase</th><th>AWS (RDS / Aurora)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Time to launch</td><td>Minutes: DB, auth &amp; APIs ready</td><td>Days: you assemble the pieces</td></tr>
+            <tr><td>What&rsquo;s included</td><td>Postgres + auth, REST/GraphQL, storage, realtime</td><td>Just the database; you build the rest</td></tr>
+            <tr><td>Cost at 1&ndash;100</td><td>Free tier, then a flat low monthly fee</td><td>Low, but spread across several metered services</td></tr>
+            <tr><td>Ops burden</td><td>Managed for you</td><td>More of it is on you</td></tr>
+            <tr><td>Scaling ceiling</td><td>Large: it is Postgres</td><td>Effectively unlimited</td></tr>
+            <tr><td>Lock-in</td><td>Low: standard Postgres, export anytime</td><td>Low on RDS, higher with AWS-specific services</td></tr>
+            <tr><td>Best for</td><td>Shipping fast, small teams</td><td>Existing AWS, compliance, big scale</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="viz-note" style="margin-left:4px">Both are cheap and both are capable at this size. The gap is in time and effort, not performance.</p>
+    </div>
+
+    <h2>When AWS is the right call</h2>
+    <p>AWS earns its complexity once you have a specific reason for it:</p>
+    <ul>
+      <li><strong>You are already on AWS.</strong> Your app, your team&rsquo;s skills, and your other services live there, so staying in one place is genuinely simpler.</li>
+      <li><strong>You have strict compliance or data-residency needs.</strong> Private networking, fine-grained access controls, and certifications matter in regulated industries like healthcare and finance.</li>
+      <li><strong>You are planning for genuinely large scale.</strong> Not &ldquo;we hope to grow&rdquo; but real, near-term volume that justifies designing for it now.</li>
+      <li><strong>You need one specific service.</strong> Something like DynamoDB&rsquo;s millisecond lookups at massive scale, or tight integration with the rest of your AWS stack.</li>
+    </ul>
+    <p>If none of those are true today, you are buying complexity you do not need yet.</p>
+
+    <div class="picks">
+      <div class="pick sb">
+        <div class="pick-h">Start with Supabase if&hellip;</div>
+        <ul>
+          <li>You are an early product or small business under a few hundred users.</li>
+          <li>You want login, APIs, and a database working the same afternoon.</li>
+          <li>You value flat, predictable pricing.</li>
+          <li>You would rather build the product than run infrastructure.</li>
+        </ul>
+      </div>
+      <div class="pick aws">
+        <div class="pick-h">Reach for AWS if&hellip;</div>
+        <ul>
+          <li>Your stack already lives on AWS.</li>
+          <li>You have compliance, VPC, or data-residency requirements.</li>
+          <li>You have real, near-term scale to design for.</li>
+          <li>You have the people to operate it well.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2>The mistake to avoid</h2>
+    <p>The most common and most expensive mistake is choosing your database for a business you do not have yet. Teams reach for a heavyweight, infinitely-scalable setup on day one to be &ldquo;ready,&rdquo; then spend their first six months fighting infrastructure instead of finding customers.</p>
+    <p>You can always move later. Postgres on Supabase today can become Postgres on AWS tomorrow, because it is the same database underneath. Scale is a good problem to solve when you actually have it.</p>
+
+    <blockquote>Choose for the business you have, not the one on the pitch deck.</blockquote>
+
+    <h2>So what would I actually do?</h2>
+    <p>If you are a small business or an early product serving up to a few hundred users, I would start with Supabase, or any managed Postgres, almost every time. It gets you a real database, login, and APIs in an afternoon, costs very little, and leaves the door wide open to move to AWS the day you have a concrete reason to. Pick the boring, proven option, ship it, and let real usage, not guesswork, tell you when it is time to graduate.</p>
+
+    <div style="margin:36px 0 8px">
+      <a href="/#contact" class="btn-primary" style="display:inline-flex; align-items:center; gap:10px; font-size:16px; font-weight:600; padding:15px 28px; border-radius:999px">Get a straight recommendation <span>&#8594;</span></a>
+    </div>
+  </div>
+</article>
+
+<footer style="background:#ffffff; border-top:1px solid #e5e8ec; padding:28px 24px; margin-top:40px">
+  <div style="max-width:1000px; margin:0 auto; display:flex; flex-wrap:wrap; gap:10px; align-items:center; justify-content:space-between; font-size:14px; color:#8d949e">
+    <span>&copy; 2026 Jeel Kakadiya. All rights reserved.</span>
+    <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.1em; text-transform:uppercase">Freelance developer · Phoenix, AZ</span>
+  </div>
+</footer>
+</div>
+</body>
+</html>
