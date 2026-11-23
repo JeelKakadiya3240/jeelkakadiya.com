@@ -737,7 +737,7 @@
       /* Testimonials: continuous auto-scroll marquee at all sizes */
       @keyframes tmScroll{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
       .rd .tm-wrap{ position:relative; overflow:hidden; }
-      .rd .tm-wrap::before, .rd .tm-wrap::after{ content:""; position:absolute; top:0; bottom:0; width:90px; z-index:2; pointer-events:none; }
+      .rd .tm-wrap::before, .rd .tm-wrap::after{ content:""; position:absolute; top:0; bottom:0; width:40px; z-index:2; pointer-events:none; }
       .rd .tm-wrap::before{ left:0; background:linear-gradient(to right, #0d1117 10%, rgba(13,17,23,0)); }
       .rd .tm-wrap::after{ right:0; background:linear-gradient(to left, #0d1117 10%, rgba(13,17,23,0)); }
       .rd .grid-testimonials{
@@ -757,11 +757,18 @@
         height:auto !important;
         margin-right:28px !important;
       }
+      /* Wide screens: all cards fit, so no scroll, show them static and centered */
+      @media (min-width:1600px){
+        .rd .grid-testimonials{ animation:none !important; width:100% !important; justify-content:center; gap:28px !important; }
+        .rd .grid-testimonials > figure{ margin-right:0 !important; }
+        .rd .grid-testimonials .tm-dup{ display:none !important; }
+        .rd .tm-wrap::before, .rd .tm-wrap::after{ display:none; }
+      }
       @media (max-width:960px){
-        #testimonials{ padding:60px 20px 68px !important; }
+        #testimonials{ padding:60px 0 68px !important; }
         #testimonials .tm-wrap > div:first-child{ margin-bottom:26px !important; }
         #testimonials h2{ font-size:24px !important; }
-        .rd .tm-wrap::before, .rd .tm-wrap::after{ width:40px; }
+        .rd .tm-wrap::before, .rd .tm-wrap::after{ width:20px; }
         .rd .grid-testimonials{ animation-duration:30s; }
         .rd .grid-testimonials > figure{
           flex:0 0 70vw;
@@ -779,9 +786,9 @@
       }
     </style>
     <!-- ===== TESTIMONIALS ===== -->
-    <section id="testimonials" class="rd sec-pad" style="background:#0d1117; padding:110px 24px 100px; font-family:'Poppins',system-ui,sans-serif">
-      <div class="tm-wrap" style="max-width:1216px; margin:0 auto">
-        <div style="text-align:center; margin-bottom:48px">
+    <section id="testimonials" class="rd sec-pad" style="background:#0d1117; padding:110px 0 100px; font-family:'Poppins',system-ui,sans-serif">
+      <div class="tm-wrap" style="margin:0 auto">
+        <div style="text-align:center; max-width:1216px; margin:0 auto 48px; padding:0 24px">
           <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.18em; text-transform:uppercase; color:#8d949e">What people say</div>
           <h2 style="font-size:clamp(28px,4vw,40px); line-height:1.1; font-weight:600; letter-spacing:-0.03em; margin:14px 0 0; color:#ffffff">Kind words from people I&rsquo;ve worked with</h2>
         </div>
