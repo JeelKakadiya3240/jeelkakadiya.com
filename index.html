@@ -571,9 +571,9 @@
                         <a href="#home" class="nav-link text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</a>
                         <a href="#services" class="nav-link text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium">Services</a>
                         <a href="#projects" class="nav-link text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium">Projects</a>
+                        <a href="#skills" class="nav-link text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium">Skills</a>
                         <a href="#about" class="nav-link text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium">About</a>
                         <a href="#experience" class="nav-link text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium">Experience</a>
-                        <a href="#skills" class="nav-link text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium">Skills</a>
                         <a href="/blog" class="nav-link text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium">Blog</a>
                         <a href="#contact" class="nav-link text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium">Contact</a>
                     </div>
@@ -600,9 +600,9 @@
                 <a href="#home" class="mobile-nav-link text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white block px-3 py-2 rounded-md text-base font-medium">Home</a>
                 <a href="#services" class="mobile-nav-link text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white block px-3 py-2 rounded-md text-base font-medium">Services</a>
                 <a href="#projects" class="mobile-nav-link text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white block px-3 py-2 rounded-md text-base font-medium">Projects</a>
+                <a href="#skills" class="mobile-nav-link text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white block px-3 py-2 rounded-md text-base font-medium">Skills</a>
                 <a href="#about" class="mobile-nav-link text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white block px-3 py-2 rounded-md text-base font-medium">About</a>
                 <a href="#experience" class="mobile-nav-link text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white block px-3 py-2 rounded-md text-base font-medium">Experience</a>
-                <a href="#skills" class="mobile-nav-link text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white block px-3 py-2 rounded-md text-base font-medium">Skills</a>
                 <a href="/blog" class="mobile-nav-link text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white block px-3 py-2 rounded-md text-base font-medium">Blog</a>
                 <a href="#contact" class="mobile-nav-link text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white block px-3 py-2 rounded-md text-base font-medium">Contact</a>
             </div>
@@ -733,9 +733,54 @@
         background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20200%2030%27%20preserveAspectRatio%3D%27none%27%3E%3Cpath%20d%3D%27M3%2C10%20C40%2C5%2080%2C8%20120%2C6%20C150%2C5%20178%2C8%20193%2C6%20C197%2C7%20198%2C11%20197%2C15%20C198%2C20%20196%2C24%20193%2C25%20C150%2C28%2095%2C24%2055%2C26%20C33%2C27%2016%2C26%206%2C24%20C2%2C22%202%2C18%203%2C15%20C2%2C13%202%2C11%203%2C10%20Z%27%20fill%3D%27%23ffdf4e%27%2F%3E%3C%2Fsvg%3E");
       }
     </style>
+    <style>
+      /* Testimonials: continuous auto-scroll marquee at all sizes */
+      @keyframes tmScroll{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+      .rd .tm-wrap{ position:relative; overflow:hidden; }
+      .rd .tm-wrap::before, .rd .tm-wrap::after{ content:""; position:absolute; top:0; bottom:0; width:90px; z-index:2; pointer-events:none; }
+      .rd .tm-wrap::before{ left:0; background:linear-gradient(to right, #0d1117 10%, rgba(13,17,23,0)); }
+      .rd .tm-wrap::after{ right:0; background:linear-gradient(to left, #0d1117 10%, rgba(13,17,23,0)); }
+      .rd .grid-testimonials{
+        display:flex !important;
+        grid-template-columns:none !important;
+        flex-wrap:nowrap !important;
+        align-items:flex-start !important;
+        width:max-content;
+        gap:0 !important;
+        animation:tmScroll 48s linear infinite;
+        will-change:transform;
+      }
+      .rd .grid-testimonials:hover{ animation-play-state:paused; }
+      .rd .grid-testimonials > figure{
+        flex:0 0 360px;
+        max-width:360px;
+        height:auto !important;
+        margin-right:28px !important;
+      }
+      @media (max-width:960px){
+        #testimonials{ padding:60px 20px 68px !important; }
+        #testimonials .tm-wrap > div:first-child{ margin-bottom:26px !important; }
+        #testimonials h2{ font-size:24px !important; }
+        .rd .tm-wrap::before, .rd .tm-wrap::after{ width:40px; }
+        .rd .grid-testimonials{ animation-duration:30s; }
+        .rd .grid-testimonials > figure{
+          flex:0 0 70vw;
+          max-width:255px;
+          margin-right:22px !important;
+          padding:18px 16px !important;
+          border-radius:16px !important;
+        }
+        .rd .grid-testimonials > figure > div:first-child{ font-size:32px !important; height:15px !important; }
+        .rd .grid-testimonials > figure blockquote{ font-size:13px !important; line-height:1.5 !important; margin-top:12px !important; }
+        .rd .grid-testimonials > figure figcaption{ margin-top:14px !important; padding-top:12px !important; gap:10px !important; }
+        .rd .grid-testimonials > figure figcaption img{ width:36px !important; height:36px !important; }
+        .rd .grid-testimonials > figure figcaption div[style*="font-weight:600"]{ font-size:13.5px !important; }
+        .rd .grid-testimonials > figure figcaption div[style*="font-size:14px"]{ font-size:12px !important; }
+      }
+    </style>
     <!-- ===== TESTIMONIALS ===== -->
     <section id="testimonials" class="rd sec-pad" style="background:#0d1117; padding:110px 24px 100px; font-family:'Poppins',system-ui,sans-serif">
-      <div style="max-width:1216px; margin:0 auto">
+      <div class="tm-wrap" style="max-width:1216px; margin:0 auto">
         <div style="text-align:center; margin-bottom:48px">
           <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.18em; text-transform:uppercase; color:#8d949e">What people say</div>
           <h2 style="font-size:clamp(28px,4vw,40px); line-height:1.1; font-weight:600; letter-spacing:-0.03em; margin:14px 0 0; color:#ffffff">Kind words from people I&rsquo;ve worked with</h2>
@@ -776,6 +821,71 @@
               <div>
                 <div style="font-weight:600; color:#101720">Karl Freund</div>
                 <div style="font-size:14px; color:#6b7480; margin-top:2px">Director of Agent Development, The Brokery</div>
+                <div style="display:inline-flex; align-items:center; gap:5px; font-size:12px; color:#8d949e; margin-top:7px"><svg width="13" height="13" viewBox="0 0 24 24" fill="#0a66c2" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>LinkedIn recommendation</div>
+              </div>
+            </figcaption>
+          </figure>
+
+          <figure class="stagger-item" style="margin:0; background:#ffffff; border:1px solid #e7e9ec; border-radius:20px; padding:32px 30px; display:flex; flex-direction:column">
+            <div style="color:#0e7c6f; font-family:Georgia,serif; font-size:52px; line-height:0.5; height:26px">&ldquo;</div>
+            <blockquote style="margin:18px 0 0; font-size:17px; line-height:1.68; color:#374151; flex:1">Jeel has been an <span class="mark-hl">absolute pleasure to work with</span>. He has an excellent work ethic, is highly knowledgeable, and takes the time to thoroughly research and understand every project. He asks the right questions, pays close attention to detail, and is always looking for ways to improve. He&rsquo;s <span class="mark-hl">reliable, proactive</span>, and genuinely committed to delivering quality results. <span class="mark-hl">I highly recommend Jeel</span>.</blockquote>
+            <figcaption style="display:flex; align-items:center; gap:14px; margin-top:24px; padding-top:22px; border-top:1px solid #eef1f4">
+              <img src="assets/kyle-rao.jpg" alt="Kyle Rao" loading="lazy" style="flex-shrink:0; width:46px; height:46px; border-radius:50%; object-fit:cover; background:#e4e8ec">
+              <div>
+                <div style="font-weight:600; color:#101720">Kyle Rao</div>
+                <div style="font-size:14px; color:#6b7480; margin-top:2px">CEO, Secure Medical &middot; Founder, eDrugstore.com</div>
+                <div style="display:inline-flex; align-items:center; gap:5px; font-size:12px; color:#8d949e; margin-top:7px"><svg width="13" height="13" viewBox="0 0 24 24" fill="#0a66c2" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>LinkedIn recommendation</div>
+              </div>
+            </figcaption>
+          </figure>
+
+          <figure class="tm-dup" aria-hidden="true" style="margin:0; background:#ffffff; border:1px solid #e7e9ec; border-radius:20px; padding:32px 30px; display:flex; flex-direction:column">
+            <div style="color:#0e7c6f; font-family:Georgia,serif; font-size:52px; line-height:0.5; height:26px">&ldquo;</div>
+            <blockquote style="margin:18px 0 0; font-size:17px; line-height:1.68; color:#374151; flex:1">Jeel took on a longstanding business challenge involving the integration of our website, CRM, and accounting systems and delivered a comprehensive solution in a <span class="mark-hl">remarkably short period of time</span>. His technical knowledge, initiative, professionalism, and ability to communicate and coordinate with multiple stakeholders were exceptional. I&rsquo;ve worked with a lot of technology professionals over the years, and <span class="mark-hl">Jeel ranks among the very best</span>.</blockquote>
+            <figcaption style="display:flex; align-items:center; gap:14px; margin-top:24px; padding-top:22px; border-top:1px solid #eef1f4">
+              <img src="assets/robert-johnson.jpg" alt="Robert Johnson" loading="lazy" style="flex-shrink:0; width:46px; height:46px; border-radius:50%; object-fit:cover; background:#e4e8ec">
+              <div>
+                <div style="font-weight:600; color:#101720">Robert Johnson</div>
+                <div style="font-size:14px; color:#6b7480; margin-top:2px">Founder &amp; CEO, <a href="https://www.firefly.cloud/" target="_blank" rel="noopener noreferrer" style="color:#0e7c6f; font-weight:500">Firefly</a> &middot; Client</div>
+                <div style="display:inline-flex; align-items:center; gap:5px; font-size:12px; color:#8d949e; margin-top:7px"><svg width="13" height="13" viewBox="0 0 24 24" fill="#0a66c2" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>LinkedIn recommendation</div>
+              </div>
+            </figcaption>
+          </figure>
+
+          <figure class="tm-dup" aria-hidden="true" style="margin:0; background:#ffffff; border:1px solid #e7e9ec; border-radius:20px; padding:32px 30px; display:flex; flex-direction:column">
+            <div style="color:#0e7c6f; font-family:Georgia,serif; font-size:52px; line-height:0.5; height:26px">&ldquo;</div>
+            <blockquote style="margin:18px 0 0; font-size:17px; line-height:1.68; color:#374151; flex:1">Jeel is <span class="mark-hl">one of the best and most curious minds</span> I&rsquo;ve had the pleasure of working with. He literally never stops thinking of ways to improve. He dives in, rolls up his sleeves, and <span class="mark-hl">makes an immediate impact</span>. Smart, well educated, and confident in his decision making. He would be a tremendous value add to any organization, and <span class="mark-hl">I highly recommend Jeel</span>.</blockquote>
+            <figcaption style="display:flex; align-items:center; gap:14px; margin-top:24px; padding-top:22px; border-top:1px solid #eef1f4">
+              <img src="assets/daryle-messina.jpg" alt="Daryle Messina" loading="lazy" style="flex-shrink:0; width:46px; height:46px; border-radius:50%; object-fit:cover; background:#e4e8ec">
+              <div>
+                <div style="font-weight:600; color:#101720">Daryle Messina</div>
+                <div style="font-size:14px; color:#6b7480; margin-top:2px">Co-Founder, MABLS</div>
+                <div style="display:inline-flex; align-items:center; gap:5px; font-size:12px; color:#8d949e; margin-top:7px"><svg width="13" height="13" viewBox="0 0 24 24" fill="#0a66c2" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>LinkedIn recommendation</div>
+              </div>
+            </figcaption>
+          </figure>
+
+          <figure class="tm-dup" aria-hidden="true" style="margin:0; background:#ffffff; border:1px solid #e7e9ec; border-radius:20px; padding:32px 30px; display:flex; flex-direction:column">
+            <div style="color:#0e7c6f; font-family:Georgia,serif; font-size:52px; line-height:0.5; height:26px">&ldquo;</div>
+            <blockquote style="margin:18px 0 0; font-size:17px; line-height:1.68; color:#374151; flex:1">Jeel is seriously <span class="mark-hl">one of the hardest working and most intelligent people</span> I&rsquo;ve worked with in quite some time. I gave him the very difficult task of creating a real estate portal that competes with the national portals, with very little direction. The end result was <span class="mark-hl">nothing short of amazing</span>, and he certainly over delivered. He sees the destination and formulates the plan to get there. <span class="mark-hl">Jeel is an instant hire</span>.</blockquote>
+            <figcaption style="display:flex; align-items:center; gap:14px; margin-top:24px; padding-top:22px; border-top:1px solid #eef1f4">
+              <img src="assets/karl-freund.jpg" alt="Karl Freund" loading="lazy" style="flex-shrink:0; width:46px; height:46px; border-radius:50%; object-fit:cover; background:#e4e8ec">
+              <div>
+                <div style="font-weight:600; color:#101720">Karl Freund</div>
+                <div style="font-size:14px; color:#6b7480; margin-top:2px">Director of Agent Development, The Brokery</div>
+                <div style="display:inline-flex; align-items:center; gap:5px; font-size:12px; color:#8d949e; margin-top:7px"><svg width="13" height="13" viewBox="0 0 24 24" fill="#0a66c2" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>LinkedIn recommendation</div>
+              </div>
+            </figcaption>
+          </figure>
+
+          <figure class="tm-dup" aria-hidden="true" style="margin:0; background:#ffffff; border:1px solid #e7e9ec; border-radius:20px; padding:32px 30px; display:flex; flex-direction:column">
+            <div style="color:#0e7c6f; font-family:Georgia,serif; font-size:52px; line-height:0.5; height:26px">&ldquo;</div>
+            <blockquote style="margin:18px 0 0; font-size:17px; line-height:1.68; color:#374151; flex:1">Jeel has been an <span class="mark-hl">absolute pleasure to work with</span>. He has an excellent work ethic, is highly knowledgeable, and takes the time to thoroughly research and understand every project. He asks the right questions, pays close attention to detail, and is always looking for ways to improve. He&rsquo;s <span class="mark-hl">reliable, proactive</span>, and genuinely committed to delivering quality results. <span class="mark-hl">I highly recommend Jeel</span>.</blockquote>
+            <figcaption style="display:flex; align-items:center; gap:14px; margin-top:24px; padding-top:22px; border-top:1px solid #eef1f4">
+              <img src="assets/kyle-rao.jpg" alt="Kyle Rao" loading="lazy" style="flex-shrink:0; width:46px; height:46px; border-radius:50%; object-fit:cover; background:#e4e8ec">
+              <div>
+                <div style="font-weight:600; color:#101720">Kyle Rao</div>
+                <div style="font-size:14px; color:#6b7480; margin-top:2px">CEO, Secure Medical &middot; Founder, eDrugstore.com</div>
                 <div style="display:inline-flex; align-items:center; gap:5px; font-size:12px; color:#8d949e; margin-top:7px"><svg width="13" height="13" viewBox="0 0 24 24" fill="#0a66c2" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>LinkedIn recommendation</div>
               </div>
             </figcaption>
@@ -998,8 +1108,101 @@
       </div>
     </section>
 
+    <!-- ===== SKILLS (card fan) ===== -->
+    <section id="skills" class="rd skills-fan" style="position:relative; height:240vh; background:#ffffff; font-family:'Poppins',system-ui,sans-serif">
+      <div class="skills-sticky" style="position:sticky; top:0; height:100vh; display:flex; flex-direction:column; padding:96px 24px 32px; overflow:hidden">
+        <div style="width:100%; max-width:1216px; margin:0 auto">
+          <div class="grid-head" style="display:grid; grid-template-columns:360px 1fr; gap:80px; align-items:end">
+            <div>
+              <div style="display:flex; align-items:center; gap:12px; font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.18em; text-transform:uppercase; color:#8d949e">
+                <span style="color:#0e7c6f">03</span>
+                Skills
+              </div>
+              <h2 style="font-size:clamp(34px,5vw,46px); line-height:1.06; font-weight:600; letter-spacing:-0.035em; margin:20px 0 0; color:#101720">Technical<br>expertise</h2>
+            </div>
+            <p style="font-size:17px; line-height:1.7; color:#5c6470; margin:0 0 8px; max-width:520px">The toolkit I reach for, built through graduate coursework, client work, and shipping production software.</p>
+          </div>
+        </div>
+
+        <div class="skills-stage" data-stage style="position:relative; flex:1; width:100%; max-width:1216px; margin:24px auto 0; min-height:460px">
+          <!-- 01 Languages -->
+          <div class="skill-card" data-card style="background:#10151b; border:1px solid #10151b">
+            <div class="sc-bar" style="background:#41c9b4"></div>
+            <div class="sc-label" style="color:#7d8794">Toolkit</div>
+            <h3 class="sc-title" style="color:#ffffff">Languages</h3>
+            <div class="sc-chips" data-chip-bg="rgba(255,255,255,0.08)" data-chip="#d1d5db">
+              <span>Java</span><span>Python</span><span>JavaScript</span><span>TypeScript</span><span>C++</span><span>SQL</span>
+            </div>
+            <div class="sc-num" style="color:rgba(255,255,255,0.06)">01</div>
+          </div>
+          <!-- 02 Web -->
+          <div class="skill-card" data-card style="background:#ffffff; border:1px solid #e7e9ec">
+            <div class="sc-bar" style="background:#0e7c6f"></div>
+            <div class="sc-label" style="color:#8d949e">Toolkit</div>
+            <h3 class="sc-title" style="color:#101720">Web</h3>
+            <div class="sc-chips" data-chip-bg="#f4f5f7" data-chip="#404955">
+              <span>React</span><span>Next.js</span><span>Node.js</span><span>HTML5</span><span>CSS3</span><span>Tailwind CSS</span>
+            </div>
+            <div class="sc-num" style="color:rgba(16,23,32,0.05)">02</div>
+          </div>
+          <!-- 03 Cloud & DevOps -->
+          <div class="skill-card" data-card style="background:#0e7c6f; border:1px solid #0e7c6f">
+            <div class="sc-bar" style="background:#d9f2ea"></div>
+            <div class="sc-label" style="color:#bfe6dc">Toolkit</div>
+            <h3 class="sc-title" style="color:#ffffff">Cloud &amp; DevOps</h3>
+            <div class="sc-chips" data-chip-bg="rgba(255,255,255,0.14)" data-chip="#ffffff">
+              <span>AWS</span><span>Docker</span><span>Git</span><span>CI/CD</span><span>REST APIs</span><span>Microservices</span>
+            </div>
+            <div class="sc-num" style="color:rgba(255,255,255,0.09)">03</div>
+          </div>
+          <!-- 04 Business Tools (NEW) -->
+          <div class="skill-card" data-card style="background:#d9f2ea; border:1px solid #bfe6dc">
+            <div class="sc-bar" style="background:#0e7c6f"></div>
+            <div class="sc-label" style="color:#3f7f74">Toolkit</div>
+            <h3 class="sc-title" style="color:#0b4f47">Business Tools</h3>
+            <div class="sc-chips" data-chip-bg="#ffffff" data-chip="#0b675c">
+              <span>HubSpot</span><span>GoHighLevel</span><span>Instantly</span><span>Twilio</span>
+            </div>
+            <div class="sc-num" style="color:rgba(11,79,71,0.08)">04</div>
+          </div>
+          <!-- 05 Databases -->
+          <div class="skill-card" data-card style="background:#0f2233; border:1px solid #0f2233">
+            <div class="sc-bar" style="background:#41c9b4"></div>
+            <div class="sc-label" style="color:#7d8fa3">Toolkit</div>
+            <h3 class="sc-title" style="color:#ffffff">Databases</h3>
+            <div class="sc-chips" data-chip-bg="rgba(255,255,255,0.08)" data-chip="#cbd5e1">
+              <span>MongoDB</span><span>PostgreSQL</span><span>MySQL</span><span>Redis</span>
+            </div>
+            <div class="sc-num" style="color:rgba(255,255,255,0.06)">05</div>
+          </div>
+          <!-- 06 Tools & Frameworks -->
+          <div class="skill-card" data-card style="background:#ffffff; border:1px solid #e7e9ec">
+            <div class="sc-bar" style="background:#0e7c6f"></div>
+            <div class="sc-label" style="color:#8d949e">Toolkit</div>
+            <h3 class="sc-title" style="color:#101720">Tools &amp; Frameworks</h3>
+            <div class="sc-chips" data-chip-bg="#f4f5f7" data-chip="#404955">
+              <span>Spring Boot</span><span>Express.js</span><span>GraphQL</span><span>JUnit</span><span>Maven</span><span>Gradle</span>
+            </div>
+            <div class="sc-num" style="color:rgba(16,23,32,0.05)">06</div>
+          </div>
+          <!-- 07 AI & ML -->
+          <div class="skill-card" data-card style="background:#0b4f47; border:1px solid #0b4f47">
+            <div class="sc-bar" style="background:#5eead4"></div>
+            <div class="sc-label" style="color:#8fc9bf">Toolkit</div>
+            <h3 class="sc-title" style="color:#ffffff">AI &amp; ML</h3>
+            <div class="sc-chips" data-chip-bg="rgba(255,255,255,0.12)" data-chip="#e6fffa">
+              <span>MCP Servers</span><span>LLM Integration</span><span>RAG</span><span>Prompt Engineering</span><span>NLP</span>
+            </div>
+            <div class="sc-num" style="color:rgba(255,255,255,0.07)">07</div>
+          </div>
+        </div>
+
+        <div class="skills-hint" style="text-align:center; font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#9aa2ac; margin-top:8px">Hover a card to bring it forward</div>
+      </div>
+    </section>
+
     <!-- ===== ABOUT (redesign) ===== -->
-    <section id="about" class="rd sec-pad" style="background:#ffffff; padding:120px 24px 110px; font-family:'Poppins',system-ui,sans-serif">
+    <section id="about" class="rd sec-pad" style="background:#ffffff; padding:120px 24px 110px; border-top:1px solid #e7e9ec; font-family:'Poppins',system-ui,sans-serif">
       <div class="grid-head" style="max-width:1216px; margin:0 auto; display:grid; grid-template-columns:360px 1fr; gap:80px">
         <div class="stagger-item">
           <div style="display:flex; align-items:center; gap:12px; font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.18em; text-transform:uppercase; color:#8d949e">
@@ -1132,99 +1335,6 @@
             </div>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- ===== SKILLS (card fan) ===== -->
-    <section id="skills" class="rd skills-fan" style="position:relative; height:240vh; background:#ffffff; font-family:'Poppins',system-ui,sans-serif">
-      <div class="skills-sticky" style="position:sticky; top:0; height:100vh; display:flex; flex-direction:column; padding:96px 24px 32px; overflow:hidden">
-        <div style="width:100%; max-width:1216px; margin:0 auto">
-          <div class="grid-head" style="display:grid; grid-template-columns:360px 1fr; gap:80px; align-items:end">
-            <div>
-              <div style="display:flex; align-items:center; gap:12px; font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.18em; text-transform:uppercase; color:#8d949e">
-                <span style="color:#0e7c6f">03</span>
-                Skills
-              </div>
-              <h2 style="font-size:clamp(34px,5vw,46px); line-height:1.06; font-weight:600; letter-spacing:-0.035em; margin:20px 0 0; color:#101720">Technical<br>expertise</h2>
-            </div>
-            <p style="font-size:17px; line-height:1.7; color:#5c6470; margin:0 0 8px; max-width:520px">The toolkit I reach for, built through graduate coursework, client work, and shipping production software.</p>
-          </div>
-        </div>
-
-        <div class="skills-stage" data-stage style="position:relative; flex:1; width:100%; max-width:1216px; margin:24px auto 0; min-height:460px">
-          <!-- 01 Languages -->
-          <div class="skill-card" data-card style="background:#10151b; border:1px solid #10151b">
-            <div class="sc-bar" style="background:#41c9b4"></div>
-            <div class="sc-label" style="color:#7d8794">Toolkit</div>
-            <h3 class="sc-title" style="color:#ffffff">Languages</h3>
-            <div class="sc-chips" data-chip-bg="rgba(255,255,255,0.08)" data-chip="#d1d5db">
-              <span>Java</span><span>Python</span><span>JavaScript</span><span>TypeScript</span><span>C++</span><span>SQL</span>
-            </div>
-            <div class="sc-num" style="color:rgba(255,255,255,0.06)">01</div>
-          </div>
-          <!-- 02 Web -->
-          <div class="skill-card" data-card style="background:#ffffff; border:1px solid #e7e9ec">
-            <div class="sc-bar" style="background:#0e7c6f"></div>
-            <div class="sc-label" style="color:#8d949e">Toolkit</div>
-            <h3 class="sc-title" style="color:#101720">Web</h3>
-            <div class="sc-chips" data-chip-bg="#f4f5f7" data-chip="#404955">
-              <span>React</span><span>Next.js</span><span>Node.js</span><span>HTML5</span><span>CSS3</span><span>Tailwind CSS</span>
-            </div>
-            <div class="sc-num" style="color:rgba(16,23,32,0.05)">02</div>
-          </div>
-          <!-- 03 Cloud & DevOps -->
-          <div class="skill-card" data-card style="background:#0e7c6f; border:1px solid #0e7c6f">
-            <div class="sc-bar" style="background:#d9f2ea"></div>
-            <div class="sc-label" style="color:#bfe6dc">Toolkit</div>
-            <h3 class="sc-title" style="color:#ffffff">Cloud &amp; DevOps</h3>
-            <div class="sc-chips" data-chip-bg="rgba(255,255,255,0.14)" data-chip="#ffffff">
-              <span>AWS</span><span>Docker</span><span>Git</span><span>CI/CD</span><span>REST APIs</span><span>Microservices</span>
-            </div>
-            <div class="sc-num" style="color:rgba(255,255,255,0.09)">03</div>
-          </div>
-          <!-- 04 Business Tools (NEW) -->
-          <div class="skill-card" data-card style="background:#d9f2ea; border:1px solid #bfe6dc">
-            <div class="sc-bar" style="background:#0e7c6f"></div>
-            <div class="sc-label" style="color:#3f7f74">Toolkit</div>
-            <h3 class="sc-title" style="color:#0b4f47">Business Tools</h3>
-            <div class="sc-chips" data-chip-bg="#ffffff" data-chip="#0b675c">
-              <span>HubSpot</span><span>GoHighLevel</span><span>Instantly</span><span>Twilio</span>
-            </div>
-            <div class="sc-num" style="color:rgba(11,79,71,0.08)">04</div>
-          </div>
-          <!-- 05 Databases -->
-          <div class="skill-card" data-card style="background:#0f2233; border:1px solid #0f2233">
-            <div class="sc-bar" style="background:#41c9b4"></div>
-            <div class="sc-label" style="color:#7d8fa3">Toolkit</div>
-            <h3 class="sc-title" style="color:#ffffff">Databases</h3>
-            <div class="sc-chips" data-chip-bg="rgba(255,255,255,0.08)" data-chip="#cbd5e1">
-              <span>MongoDB</span><span>PostgreSQL</span><span>MySQL</span><span>Redis</span>
-            </div>
-            <div class="sc-num" style="color:rgba(255,255,255,0.06)">05</div>
-          </div>
-          <!-- 06 Tools & Frameworks -->
-          <div class="skill-card" data-card style="background:#ffffff; border:1px solid #e7e9ec">
-            <div class="sc-bar" style="background:#0e7c6f"></div>
-            <div class="sc-label" style="color:#8d949e">Toolkit</div>
-            <h3 class="sc-title" style="color:#101720">Tools &amp; Frameworks</h3>
-            <div class="sc-chips" data-chip-bg="#f4f5f7" data-chip="#404955">
-              <span>Spring Boot</span><span>Express.js</span><span>GraphQL</span><span>JUnit</span><span>Maven</span><span>Gradle</span>
-            </div>
-            <div class="sc-num" style="color:rgba(16,23,32,0.05)">06</div>
-          </div>
-          <!-- 07 AI & ML -->
-          <div class="skill-card" data-card style="background:#0b4f47; border:1px solid #0b4f47">
-            <div class="sc-bar" style="background:#5eead4"></div>
-            <div class="sc-label" style="color:#8fc9bf">Toolkit</div>
-            <h3 class="sc-title" style="color:#ffffff">AI &amp; ML</h3>
-            <div class="sc-chips" data-chip-bg="rgba(255,255,255,0.12)" data-chip="#e6fffa">
-              <span>MCP Servers</span><span>LLM Integration</span><span>RAG</span><span>Prompt Engineering</span><span>NLP</span>
-            </div>
-            <div class="sc-num" style="color:rgba(255,255,255,0.07)">07</div>
-          </div>
-        </div>
-
-        <div class="skills-hint" style="text-align:center; font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#9aa2ac; margin-top:8px">Hover a card to bring it forward</div>
       </div>
     </section>
 
